@@ -1,0 +1,145 @@
+.header{
+    height: 60px;
+    display:flex;
+    align-items: center;
+    background-color: #242117;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+.nav_left{
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+}
+.header_logo{
+    width: 100px;
+    object-fit: contain;
+    margin: 0 20px;
+    margin-top: 0px;
+}
+.header__nav{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.header__option1{
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
+    margin-right: 10px;
+    color: white;
+}
+.header__optionBasket{
+    display: flex;
+    align-items: center;
+    color: white;
+}
+.header_basketCount{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+
+.nav_right{
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    justify-content: flex-start;
+}
+.header_search{
+    display: flex;
+    flex: 1;
+    align-items: center;
+    border-radius: 24px;
+}
+.header_searchInput{
+    height: 12px;
+    padding: 10px;
+    border: none;
+    width:80%;
+}
+.header_searchIcon{
+    padding: 5px;
+    height: 22px !important;
+    background-color: #f3dcbf;
+}
+
+
+
+
+
+/* .header__nav{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+} */
+/* .header__option{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-right: 10px;
+    color: white;
+} */
+/* .header__option1{
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
+    margin-right: 10px;
+    color: white;
+} */
+/* .header_optionLineOne{
+    font-size: 11px;
+} */
+/* .header_optionLineTwo{
+    margin-top: ;
+    font-size: 13px;
+    font-weight: 700;
+} */
+/* .header_profileIcon{
+    color: white;
+} */
+/* .header__optionBasket{
+    display: flex;
+    align-items: center;
+    color: white;
+} */
+.header_basketCount{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+/* #131921 */
+/* #242117 */
+
+
+
+
+
+@media only screen and (max-width: 749px){
+    .header{
+        height: 60px;
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #242117;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        height: auto;
+    }
+    .nav_left{
+        display: flex;
+        flex-direction: row;
+        width: 90%;
+        justify-content: center;
+    }
+    .nav_right{
+        display: flex;
+        flex-direction: row;
+        width: 80%;
+        justify-content: center;
+    }
+}
+
+/* 749 */

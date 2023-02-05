@@ -1,9 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Product from './Product';
 import "./Home.css";
 import banner from './banner.jpg'
+import { useSelector } from 'react-redux';
 
 function Home() {
+    const theState = useSelector((state) => state);
+
+    console.log("This isthe state: ", theState)
+
+
     return (
         <div>
             <div className="home_container">

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
-import Logo from './Logo.jpeg';
+import Logo from '../Logo.jpeg';
 import "./Header.css";
 
 function Header() {

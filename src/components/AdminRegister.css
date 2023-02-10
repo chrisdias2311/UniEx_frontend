@@ -1,5 +1,5 @@
-.signup {
-    background-color: white;
+.adminregister {
+    /* background-color: white; */
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -16,33 +16,42 @@
     margin-left: auto;
 }
 
-.signup_container {
-    width: 300px;
+.adminRegisterForm {
+    width: 30%;
     height: fit-content;
     display: flex;
     flex-direction: column;
-    border-radius: 5px;
+    border-radius: 10px;
     border: 1px solid lightgray;
-    padding: 20px;
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 50px;
+    padding-left: 20px;
+    background-color: white;
+    margin-bottom: 30px;
 }
 
-.signup_container>h1 {
+.inputField{
+    margin: 10px;
+}
+
+.adminRegisterForm>h1 {
     font-weight: 500;
     margin-bottom: 20px;
 }
 
-.signup_container>form>h5 {
+.adminRegisterForm>form>h5 {
     margin-bottom: 5px;
 }
 
-.signup_container>form>input {
+.signuadminRegisterFormp_container>form>input {
     height: 30px;
     margin-bottom: 10px;
     background-color: white;
     width: 98%;
 }
 
-.signup_container>p {
+.adminRegisterForm>p {
     margin-top: 15px;
     font-size: 12px;
 }

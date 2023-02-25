@@ -5,30 +5,28 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 
-import UserCard from "./UserCard";
+import InvalidUserCard from "./InvalidUserCard";
+import {setsetInvalidUsers} from '../redux/actions/formActions'
 import { getInvalidUser } from "../api/api";
+import * as api from '../api/api'
 import { setInvalidUsers } from "../redux/actions/formActions";
 import "./InvalidUsers.css";
+
 
 function InvalidUsers() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [users, setUsers] = useState([]);
 
-    //   const theState = useSelector((state) => state);
-
-    //   const invalidUsers = useSelector((state) => state);
-    //   console.log("These are the invalid users:", invalidUsers);
+    const data  = useSelector((state) => state);
 
     useEffect(() => {
         if (!localStorage.getItem("admin")) {
             navigate("/");
         } else {
             axios
-                .get("http://localhost:5000/api/user/unvalidusers")
+                .get("http://localhost:5000/api/user/invalidusers")
                 .then((response) => {
-                    console.log(response.data);
-                    setUsers(response.data);
+                    dispatch(setInvalidUsers(response.data));
                 })
                 .catch((error) => {
                     console.log(error);
@@ -36,10 +34,9 @@ function InvalidUsers() {
         }
     }, []);
 
-    dispatch(setInvalidUsers(users));
-    console.log(users)
 
-    // dispatch(setUser(result.newUser))
+    console.log("The Invalidusers: ", data.users.validateUsers);
+    const users = data.users.validateUsers;
 
     return (
 
@@ -50,7 +47,8 @@ function InvalidUsers() {
                 <div className="rightPanel">
                     {
                         users.length > 0 ? users.map((item, index) =>
-                            <UserCard
+                            <InvalidUserCard
+                              id ={item._id}
                               pid={item.pid}
                               firstname={item.firstname}
                               lastname={item.lastname}
@@ -63,48 +61,10 @@ function InvalidUsers() {
                             />
                         ) : <h1>No users found</h1>
                     }
-
-
-                    {/* // <UserCard
-                    //     pid="211024"
-                    //     firstname="Chris"
-                    //     lastname="Dias"
-                    //     phone="9637261594"
-                    //     email="chrisdias2311@student.sfit.ac.in"
-                    //     year="SE"
-                    //     dept="INFT"
-                    //     div="A"
-                    // />
-                    // <UserCard /> */}
                 </div>
             </div>
         </div>
     );
-
-
-
-    // return (
-
-    //     <div>
-    //         <h1>Validate Users</h1>
-    //         <div className="main">
-    //             <div className="leftPanel"></div>
-    //             <div className="rightPanel">
-    //                 <UserCard
-    //                     pid="211024"
-    //                     firstname="Chris"
-    //                     lastname="Dias"
-    //                     phone="9637261594"
-    //                     email="chrisdias2311@student.sfit.ac.in"
-    //                     year="SE"
-    //                     dept="INFT"
-    //                     div="A"
-    //                 />
-    //                 <UserCard />
-    //             </div>
-    //         </div>
-    //     </div>
-    // );
 }
 
 export default InvalidUsers;

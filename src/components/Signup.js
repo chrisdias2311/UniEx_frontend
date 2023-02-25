@@ -165,44 +165,44 @@ function Signup() {
         setImageUpload(true);
     }
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        console.log("This is form data: ", console.log(formData));
-    };
+    // const handleSubmit = (event) => {
+    //     event.preventDefault();
+    //     console.log("This is form data: ", console.log(formData));
+    // };
 
-    const registerUser = async () => {
-        const email = formData.email;
-        const firstname = formData.firstName;
-        const lastname = formData.lastName;
-        const password = formData.password;
-        const IDCard = formData.image;
+    // const registerUser = async () => {
+    //     const email = formData.email;
+    //     const firstname = formData.firstName;
+    //     const lastname = formData.lastName;
+    //     const password = formData.password;
+    //     const IDCard = formData.image;
 
-        console.log("This is the formdata ", email, firstname, lastname, password, IDCard)
+    //     console.log("This is the formdata ", email, firstname, lastname, password, IDCard)
 
-        if (formData.email.length > 1 && formData.password.length > 1) {
-            let result = await fetch('http://localhost:5000/api/user/register', {
-                method: 'post',
-                body: JSON.stringify({ email, firstname, lastname, password, IDCard }),
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-            })
-            result = await result.json()
+    //     if (formData.email.length > 1 && formData.password.length > 1) {
+    //         let result = await fetch('http://localhost:5000/api/user/register', {
+    //             method: 'post',
+    //             body: JSON.stringify({ email, firstname, lastname, password, IDCard }),
+    //             headers: {
+    //                 'Content-Type': 'application/json'
+    //             },
+    //         })
+    //         result = await result.json()
 
-            // localStorage.setItem("user", JSON.stringify(result));
-            // localStorage.setItem("owner", name);
+    //         // localStorage.setItem("user", JSON.stringify(result));
+    //         // localStorage.setItem("owner", name);
 
-            if (result.auth) {
-                alert("You have been succesfully registered!")
-                localStorage.setItem('token', JSON.stringify(result.auth))
-                localStorage.setItem('user', JSON.stringify(result.newUser))
-                dispatch(setUser(result.newUser))
-                navigate('/');
-            }
-        } else {
-            alert("Please enter valid details");
-        }
-    }
+    //         if (result.auth) {
+    //             alert("You have been succesfully registered!")
+    //             localStorage.setItem('token', JSON.stringify(result.auth))
+    //             localStorage.setItem('user', JSON.stringify(result.newUser))
+    //             dispatch(setUser(result.newUser))
+    //             navigate('/');
+    //         }
+    //     } else {
+    //         alert("Please enter valid details");
+    //     }
+    // }
 
 
     const submitSignupForm = (e) => {
@@ -226,7 +226,14 @@ function Signup() {
                 'Content-Type': 'multipart/form-data',
             },
         })
-            .then(res => console.log("An eror", res))
+            .then(res => {
+                if(localStorage.getItem('user')){
+                    localStorage.clear();
+                    localStorage.setItem('user', JSON.stringify(res.data));
+                }else{
+                    localStorage.setItem('user', JSON.stringify(res.data));
+                }
+            })
             .catch(err => console.log(err));
     }
 

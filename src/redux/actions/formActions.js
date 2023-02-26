@@ -104,6 +104,39 @@ export const setPreviousPapersButton = () => {
 
 
 
+export const searchAllProducts = (search) => {
+  return{
+    type: ActionTypes.SEARCH_ALL_PRODUCTS,
+    payload:search
+  }
+}
+export const searchStationery = (search) => {
+  return{
+    type: ActionTypes.SEARCH_STATIONERY,
+    payload:search
+  }
+}
+export const searchNotes = (search) => {
+  return{
+    type: ActionTypes.SEARCH_NOTES,
+    payload:search
+  }
+}
+export const searchPreviousPapers = (search) => {
+  return{
+    type: ActionTypes.SEARCH_PREVIOUS_PAPERS,
+    payload:search
+  }
+}
+export const searchEnotes = (search) => {
+  return{
+    type: ActionTypes.SEARCH_ENOTES,
+    payload:search
+  }
+}
+
+
+
 
 // export const setInvalidUsers = async() => {
 //   console.log("Set invalid users called from formActons: ");

@@ -1,28 +1,27 @@
-import React, { useEffect } from 'react'
-import Product from './Product';
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import ProductCard from './ProductCard';
 import "./Home.css";
 import banner from './banner.jpg'
-import { setProducts, setStationery, setNotes, setEnotes, setPreviousPapers, setAllProductsButton, setStationeryButton, setNotesButton, setEnotesButton, setPreviousPapersButton } from '../redux/actions/formActions';
-import { useDispatch, useSelector } from 'react-redux';
+import { setProducts, setStationery, setNotes, setEnotes, setPreviousPapers, setAllProductsButton, setStationeryButton, setNotesButton, setEnotesButton, setPreviousPapersButton, searchAllProducts, searchStationery, searchNotes, searchPreviousPapers, searchEnotes } from '../redux/actions/formActions';
+
 import axios from 'axios'
-import { useState } from 'react';
 
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
+
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-
-import { purple } from '@mui/material/colors';
 import { grey } from '@mui/material/colors';
 import { styled } from '@mui/material/styles';
+import Stack from '@mui/material/Stack';
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
 
 function Home() {
     const dispatch = useDispatch();
     const data = useSelector((state) => state);
     const [products, setAllProducts] = useState([]);
+
+    const [search, setSearch] = useState([]);
+    const [textSearch, setTextSearch] = useState('');
 
     console.log("This isthe state: ", data)
 
@@ -45,6 +44,37 @@ function Home() {
     }, [])
     console.log("This is data: ", data.products.allProducts)
 
+
+
+
+    const handleSearch = (e) => {
+        setTextSearch(e.target.value)
+        if (data.products.buttons.allProducts === true) {
+            dispatch(searchAllProducts(e.target.value))
+        }else if(data.products.buttons.stationery){
+            dispatch(searchStationery(e.target.value))
+        }else if(data.products.buttons.notes){
+            dispatch(searchNotes(e.target.value))
+        }else if(data.products.buttons.previouspapers){
+            dispatch(searchPreviousPapers(e.target.value))
+        }else if(data.products.buttons.enotes){
+            dispatch(searchEnotes(e.target.value))
+        }
+        setSearch(data.products.searchproducts)
+        console.log("The search:", search)
+    }
+    console.log("The search:", search)
+    
+    const submitSearch = () => {
+        console.log("The text search: ", textSearch)
+        if(textSearch!==''){
+            setAllProducts(search)
+        }
+    }
+
+
+
+
     const allproducts = () => {
         setAllProducts(data.products.allProducts);
         dispatch(setAllProductsButton())
@@ -65,13 +95,13 @@ function Home() {
         setAllProducts(data.products.previouspapers)
         dispatch(setPreviousPapersButton());
     }
-    
+
 
     const ColorButton = styled(Button)(({ theme }) => ({
         color: theme.palette.getContrastText(grey[900]),
         backgroundColor: grey[900],
         '&:hover': {
-            backgroundColor: grey[400],
+            backgroundColor: grey[600],
         },
     }));
 
@@ -83,11 +113,28 @@ function Home() {
             <div className="home_container">
                 <img className="home_image" src={banner}></img>
 
-                {/* <h1>Hello</h1> */}
+                <div className="home_search">
+                    <div className='home_search_bar'>
+                        <div className='inputField'>
+                            <Stack spacing={2} sx={{  height:55, minWidth: 250, maxWidth: 350, color:"white"}}>
+                                <Autocomplete
+                                    id="free-solo-demo"
+                                    freeSolo
+                                    options={search.map((option) => option.name)}
+                                    renderInput={(params) => <TextField  InputProps={{style: { color: 'white'},}} {...params} onChange={handleSearch} label="Search Products" />}
+                                />
+                            </Stack>
+                        </div>
+
+                        <ColorButton onClick={submitSearch} sx={{ maxWidth: 100, minWidth: 100, marginRight: 1, height: 40 }} variant="contained">Search</ColorButton>
+                    </div>
+                </div>
+
+
                 <div className='buttonsPanel'>
-                    <ColorButton onClick={allproducts}  sx={{ maxWidth: 300, minWidth: 300, margin: 2, height: 45 }} variant="contained">All Products</ColorButton>
-                    <ColorButton onClick={stationery}  sx={{ maxWidth: 300, minWidth: 300, margin: 2, height: 45 }} variant="contained">Stationery & Equipments</ColorButton>
-                    <ColorButton onClick={notes}  sx={{ maxWidth: 300, minWidth: 300, margin: 2, height: 45 }} variant="contained">Notes & Study Material</ColorButton>
+                    <ColorButton onClick={allproducts} sx={{ maxWidth: 300, minWidth: 300, margin: 2, height: 45 }} variant="contained">All Products</ColorButton>
+                    <ColorButton onClick={stationery} sx={{ maxWidth: 300, minWidth: 300, margin: 2, height: 45 }} variant="contained">Stationery & Equipments</ColorButton>
+                    <ColorButton onClick={notes} sx={{ maxWidth: 300, minWidth: 300, margin: 2, height: 45 }} variant="contained">Notes & Study Material</ColorButton>
                     <ColorButton onClick={previouspapers} sx={{ maxWidth: 300, minWidth: 300, margin: 2 }} variant="contained">Previous papers</ColorButton>
                     <ColorButton onClick={enotes} sx={{ maxWidth: 300, minWidth: 300, margin: 2, height: 45 }} variant="contained">E-notes and Study Material</ColorButton>
                 </div>

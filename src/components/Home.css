@@ -1,11 +1,12 @@
-.home{
-    display:flex;
+.home {
+    display: flex;
     justify-content: center;
     margin-left: auto;
     margin-right: auto;
     max-width: 1500px;
 }
-.home_row{
+
+.home_row {
     display: flex;
     z-index: 1;
     flex-wrap: wrap;
@@ -13,18 +14,96 @@
     margin-right: 5px;
     justify-content: center;
 }
-.home_image{
+
+.home_image {
     width: 100%;
     z-index: -1;
-    margin-bottom: -250px;
+    margin-bottom: -350px;
     mask-image: linear-gradient(to bottom, rgb(0, 0, 0), rgba(0, 0, 0, 0));
+    position: sticky;
 }
-.product_card{
+
+.product_card {
     background-color: aliceblue;
     z-index: 1;
 }
-.buttonsPanel{
+
+.buttonsPanel {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+}
+
+.home_search {
+    /* background-color: aliceblue; */
+    display: flex;
+    flex: 1;
+    z-index: 1;
+    align-items: center;
+    justify-content: center;
+    border-radius: 24px;
+    padding: 10px 0px 10px 0px;
+    /* background-color: white; */
+}
+
+.home_search_bar {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    margin: 0;
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 1246px) {
+    .home_image {
+        width: 100%;
+        z-index: -1;
+        margin-top: 63px;
+        /* margin-bottom: -250px; */
+        mask-image: linear-gradient(to bottom, rgb(0, 0, 0), rgba(0, 0, 0, 0));
+        position: sticky;
+    }
+}
+
+@media screen and (max-width: 1057px) {
+    .home_image {
+        width: 100%;
+        z-index: -1;
+        margin-top:63px;
+        margin-bottom: -250px;
+        mask-image: linear-gradient(to bottom, rgb(0, 0, 0), rgba(0, 0, 0, 0));
+        position: sticky;
+    }
+}
+
+@media screen and (max-width: 786px) {
+    .home_image {
+        width: 100%;
+        z-index: -1;
+        margin-top:55px;
+        margin-bottom: -150px;
+        mask-image: linear-gradient(to bottom, rgb(0, 0, 0), rgba(0, 0, 0, 0));
+        position: sticky;
+    }
+}
+
+@media screen and (max-width: 664px) {
+    .home_image {
+        width: 100%;
+        z-index: -1;
+        margin-top:55px;
+        margin-bottom: -150px;
+        mask-image: linear-gradient(to bottom, rgb(0, 0, 0), rgba(0, 0, 0, 0));
+        position: sticky;
+    }
+}
+@media screen and (max-width: 465px) {
+    .home_image {
+        width: 100%;
+        z-index: -1;
+        margin-top:55px;
+        margin-bottom: -120px;
+        mask-image: linear-gradient(to bottom, rgb(0, 0, 0), rgba(0, 0, 0, 0));
+        position: sticky;
+    }
 }

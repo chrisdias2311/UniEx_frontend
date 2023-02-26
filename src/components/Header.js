@@ -7,9 +7,15 @@ import Logo from '../Logo.jpeg';
 import "./Header.css";
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { searchAllProducts } from '../redux/actions/formActions';
 import TextField from '@mui/material/TextField';
 import { grey } from '@mui/material/colors';
 import { styled } from '@mui/material/styles';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+
+
 
 // import { makeStyles } from "@material-ui/core/styles";
 // import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
@@ -44,13 +50,23 @@ import { styled } from '@mui/material/styles';
 //     }
 // };
 function Header() {
-    const [search, SetSearch] = useState([]);
+    const [search, setSearch] = useState([]);
+    const [textSearch, setTextSearch] = useState('');
     const data = useSelector((state) => state);
-    console.log("MF DATA", data)
+    const dispatch = useDispatch();
+    console.log("MF DATA", data.products)
 
     const handleSearch = (e) => {
-        console.log(e.target.value);
+        setTextSearch(e.target.value)
+
+        if (data.products.buttons.allProducts === true) {
+            console.log(e.target.value);
+            dispatch(searchAllProducts(e.target.value))
+        }
+        setSearch(data.products.searchproducts)
     }
+
+    console.log("Name", data.products.searchproducts.name)
 
     // const ColorInput = styled(TextField)(({ theme }) => ({
     //     // color: theme.palette.getContrastText(grey[900]),
@@ -106,7 +122,22 @@ function Header() {
 
             <div className='nav_right'>
                 <div className="header_search">
-                    <input className="header_searchInput" type="text" onChange={handleSearch}></input>
+                    {/* <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={textSearch}
+                        label="Category"
+                        // onChange={handleCategoryChange}
+                    >
+                        {search.map((item) =>
+
+                            (<MenuItem value={item.name} key={item._id}>{item.name}</MenuItem>)
+
+                        )
+                        }
+
+                    </Select> */}
+                    {/* <input className="header_searchInput" type="text" onChange={handleSearch}></input> */}
                     {/* <ColorInput id="outlined-basic" label="Outlined" variant="outlined" /> */}
                     {/* <TextField
                         label="Enter your name"
@@ -117,8 +148,6 @@ function Header() {
                     <SearchIcon className="header_searchIcon" />
                 </div>
             </div>
-
-
         </div>
     )
 }

@@ -43,8 +43,12 @@ function AdminLogin() {
     })
       .then(res => {
         console.log("This is the response: ", res.data);
-        localStorage.setItem('admin', JSON.stringify(res.data));
-        navigate('/admindashboard');
+        if (res.data !== 'No user found') {
+          localStorage.setItem('admin', JSON.stringify(res.data));
+          navigate('/admindashboard');
+        }else{
+          alert("Invalid Details")
+        }
       })
       .catch(err =>
         console.log("This is the error", err),

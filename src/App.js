@@ -1,5 +1,6 @@
 import './App.css';
 import Header from './components/Header';
+import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Signup from './components/Signup';
 import AdminRegister from './components/AdminRegister';
@@ -17,7 +18,8 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      <Header/>
+      {/* <Header/> */}
+      <Navbar/>
       <Routes>
         <Route path='/' element={<><Home/></>}></Route>
         <Route path='/signup' element={<><Signup/></>}></Route>
@@ -28,6 +30,14 @@ function App() {
         <Route path='/invalidusers' element={<><InvalidUsers/></>}></Route>
         <Route path='/usercard' element={<><InvalidUserCard/></>}></Route>
         <Route path='/addproduct' element={<><AddProduct/></>}></Route>
+
+        <Route path='/about' element={<><h1>User Profile</h1><h1>About</h1></>}></Route>
+        <Route path='/myproducts' element={<><h1>User Profile</h1><h1>My Products</h1></>}></Route>
+        <Route path='/peddler' element={<><h1>User Profile</h1><h1>Peddler</h1></>}></Route>
+        <Route path='/userprofile' element={<><h1>User Profile</h1><h1>User Profile</h1></>}></Route>
+        <Route path='/adminprofile' element={<><h1>User Profile</h1><h1>Admin Profile</h1></>}></Route>
+        {/* <Route path='/admindashboard' element={<><h1>User Profile</h1><h1>Admin Dashboard</h1><h1>Admin Dashboard</h1></>}></Route> */}
+        <Route path='/viewusers' element={<><h1>View Users</h1><h1>View Users</h1></>}></Route>
       
       </Routes>
       </BrowserRouter>

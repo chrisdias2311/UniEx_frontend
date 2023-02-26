@@ -15,7 +15,8 @@ const initialState = {
         notes:false,
         previouspapers:false,
         enotes:false
-    }
+    },
+    searchproducts:[]
 }
 
 export const productReducer = (state = initialState, { type, payload }) => {
@@ -36,7 +37,7 @@ export const productReducer = (state = initialState, { type, payload }) => {
             console.log("Called from products reducer")
             return { ...state,  previouspapers: state.allProducts.filter((item) => item.category === "Previous Papers"), };
 
-            
+
         case ActionTypes.SET_ALL_PRODUCTS_BUTTON:
             console.log("Called from products reducer")
             return { ...state, buttons: {...state.buttons,allProducts:true, stationery: false, notes: false, previouspapers: false, enotes:false}};   
@@ -52,6 +53,40 @@ export const productReducer = (state = initialState, { type, payload }) => {
         case ActionTypes.SET_ENOTES_BUTTON:
             console.log("Called from products reducer")
             return { ...state, buttons: {...state.buttons,allProducts:false, stationery: false, notes: false, previouspapers: false, enotes:true}};
+
+
+        case ActionTypes.SEARCH_ALL_PRODUCTS:
+            return { ...state,  
+                searchproducts: state.allProducts.filter((item) => item.description.toLowerCase().includes(payload.toLowerCase()) || item.name.toLowerCase().includes(payload.toLowerCase()) || item.category.toLowerCase().includes(payload.toLowerCase()) ) 
+            };
+        case ActionTypes.SEARCH_STATIONERY:
+            return { 
+                ...state,  
+                searchproducts: state.stationery.filter((item) => item.description.toLowerCase().includes(payload.toLowerCase()) || 
+                item.name.toLowerCase().includes(payload.toLowerCase())  || 
+                item.category.toLowerCase().includes(payload.toLowerCase())) 
+            };
+        case ActionTypes.SEARCH_NOTES:
+            return { 
+                ...state,  
+                searchproducts: state.notes.filter((item) => item.description.toLowerCase().includes(payload.toLowerCase()) || 
+                item.name.toLowerCase().includes(payload.toLowerCase())  || 
+                item.category.toLowerCase().includes(payload.toLowerCase())) 
+            };
+        case ActionTypes.SEARCH_PREVIOUS_PAPERS:
+            return { 
+                ...state,  
+                searchproducts: state.previouspapers.filter((item) => item.description.toLowerCase().includes(payload.toLowerCase()) || 
+                item.name.toLowerCase().includes(payload.toLowerCase())  || 
+                item.category.toLowerCase().includes(payload.toLowerCase())) 
+            };
+        case ActionTypes.SEARCH_ENOTES:
+            return { 
+                ...state,  
+                searchproducts: state.enotes.filter((item) => item.description.toLowerCase().includes(payload.toLowerCase()) || 
+                item.name.toLowerCase().includes(payload.toLowerCase())  || 
+                item.category.toLowerCase().includes(payload.toLowerCase())) 
+            };
         default:
             return state;
     }

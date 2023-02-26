@@ -9,6 +9,7 @@ import AdminDashboard from './components/AdminDashboard';
 import InvalidUsers from './components/InvalidUsers';
 import AddProduct from './components/AddProduct';
 import UserLogin from './components/UserLogin';
+import MyProducts from './components/MyProducts';
 import { BrowserRouter, Switch, Routes, Route } from "react-router-dom";
 import { useEffect } from 'react';
 
@@ -30,6 +31,7 @@ function App() {
         <Route path='/invalidusers' element={<><InvalidUsers/></>}></Route>
         <Route path='/usercard' element={<><InvalidUserCard/></>}></Route>
         <Route path='/addproduct' element={<><AddProduct/></>}></Route>
+        <Route path='/myproducts' element={<><MyProducts/></>}></Route>
 
         <Route path='/about' element={<><h1>User Profile</h1><h1>About</h1></>}></Route>
         <Route path='/myproducts' element={<><h1>User Profile</h1><h1>My Products</h1></>}></Route>

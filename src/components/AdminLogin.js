@@ -4,11 +4,15 @@ import { useState } from 'react';
 import axios from 'axios';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
+import LinearProgress from '@mui/material/LinearProgress';
 
 import TextField from '@mui/material/TextField';
 
 function AdminLogin() {
   const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
 
   const [formData, setFormData] = useState({
     pid: '',
@@ -30,6 +34,7 @@ function AdminLogin() {
 
   const createAdmin = (e) => {
     e.preventDefault();
+    setOpen(!open);
     console.log("Admin login called");
 
     const formdata = new FormData();
@@ -42,11 +47,12 @@ function AdminLogin() {
       },
     })
       .then(res => {
+        setOpen(false);
         console.log("This is the response: ", res.data);
         if (res.data !== 'No user found') {
           localStorage.setItem('admin', JSON.stringify(res.data));
           navigate('/admindashboard');
-        }else{
+        } else {
           alert("Invalid Details")
         }
       })
@@ -58,23 +64,26 @@ function AdminLogin() {
 
   return (
     <div className='adminregister'>
-      <div className='adminRegisterForm'>
-        <h1>Login as Admin</h1>
+      <br></br>
+        <div className='adminRegisterForm'>
+          <br></br>
+          <LinearProgress />
+          <h1>Login as Admin</h1>
 
-        <form>
-          <div className='inputField'>
-            <TextField className='inputField' fullWidth id="outlined-basic" value={formData.pid} onChange={handlePidChange} label="PID*" variant="outlined" />
-          </div>
+          <form>
+            <div className='inputField'>
+              <TextField className='inputField' fullWidth id="outlined-basic" value={formData.pid} onChange={handlePidChange} label="PID*" variant="outlined" />
+            </div>
 
-          <div className='inputField'>
-            <TextField fullWidth type="password" className='inputField' id="outlined-basic" value={formData.password} onChange={handlePasswordChange} label="Password" variant="outlined" />
-          </div>
-        </form>
+            <div className='inputField'>
+              <TextField fullWidth type="password" className='inputField' id="outlined-basic" value={formData.password} onChange={handlePasswordChange} label="Password" variant="outlined" />
+            </div>
+          </form>
 
-        <Button variant="contained" onClick={createAdmin}>
-          Login
-        </Button>
-      </div>
+          <Button variant="contained" onClick={createAdmin}>
+            Login
+          </Button>
+        </div>
     </div>
   )
 }

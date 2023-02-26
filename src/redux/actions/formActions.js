@@ -48,6 +48,13 @@ export const setProducts = (products) => {
   }
 }
 
+export const setMyProducts = (products) => {
+  return{
+    type: ActionTypes.SET_MY_PRODUCTS,
+    payload:products
+  }
+}
+
 export const setStationery = (products) => {
   return{
     type: ActionTypes.SET_STATIONERY,

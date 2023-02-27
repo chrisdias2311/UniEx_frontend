@@ -20,6 +20,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
 function UserLogin() {
+    const navigate = useNavigate()
 
     const [formData, setFormData] = useState({
         email: '',
@@ -39,6 +40,7 @@ function UserLogin() {
     const submitSignupForm = (e) => {
         e.preventDefault();
         console.log("Signup called", formData);
+        
 
         const formdata = new FormData();
         formdata.append('email', formData.email);
@@ -54,8 +56,12 @@ function UserLogin() {
                 if(localStorage.getItem('user')){
                     localStorage.clear();
                     localStorage.setItem('user', JSON.stringify(res.data));
+                    alert("LoggedIn successfully")
+                    navigate('/')
                 }else{
                     localStorage.setItem('user', JSON.stringify(res.data));
+                    alert("LoggedIn successfully")
+                    navigate('/')
                 }
 
                 // localStorage.setItem('admin', JSON.stringify(res.data));
@@ -76,7 +82,7 @@ function UserLogin() {
                 <form >
 
                     <div className='inputField'>
-                        <TextField className='inputField' fullWidth id="outlined-basic" value={formData.email} onChange={handleUserNameChange} label="Username" variant="outlined" />
+                        <TextField className='inputField' fullWidth id="outlined-basic" value={formData.email} onChange={handleUserNameChange} label="Email" variant="outlined" />
                     </div>
                     <div className='inputField'>
                         <TextField fullWidth type="password" className='inputField' id="outlined-basic" value={formData.password} onChange={handlePasswordChange} label="Password" variant="outlined" />

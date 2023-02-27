@@ -1,5 +1,5 @@
 import React from 'react'
-import './MyProductCard.css';
+import './AvailableProductCard.css';
 
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -9,18 +9,19 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router';
 
-function MyProductCard({ id, ownerId, name, description, category, price, image, link}) {
+function AvailableProductCard({ id, ownerId, name, description, category, price, image, link }) {
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const updateProduct = () => {
-
-    }
+  const updateProduct = (id) => {
+    console.log(id)
+    navigate('/dashboard/updateproduct/'+id)
+  }
 
 
   return (
-    <div>
-       <Card sx={{ maxWidth: 345, minWidth: 345 }}>
+    <div className='myProduct_card'>
+      <Card sx={{ maxWidth: 345, minWidth: 345 }}>
         <CardMedia
           component="img"
           height="200"
@@ -41,13 +42,13 @@ function MyProductCard({ id, ownerId, name, description, category, price, image,
             Price: ₹{price}
           </Typography>
         </CardContent>
-        <CardActions sx={{ justifyContent: 'center'}}>
-          <Button variant="contained">Update</Button>
-          <Button sx={{ backgroundColor: 'red'}} variant="contained">Delete</Button>
+        <CardActions sx={{ justifyContent: 'center' }}>
+          <Button variant="contained" onClick={()=>updateProduct(id)}>Update</Button>
+          <Button sx={{ backgroundColor: 'red' }} variant="contained">Delete</Button>
         </CardActions>
       </Card>
     </div>
   )
 }
 
-export default MyProductCard
+export default AvailableProductCard

@@ -39,6 +39,9 @@ export const productReducer = (state = initialState, { type, payload }) => {
         case ActionTypes.SET_MY_PRODUCTS:
             console.log("Called from products reducer")
             return { ...state, myProducts: payload, };
+        case ActionTypes.BOOK_PRODUCT:
+            console.log("Called from products  reducer id ", payload)
+            return { ...state, allProducts: state.allProducts.filter((item) => item._id !== payload), }
 
 
         case ActionTypes.SET_ALL_PRODUCTS_BUTTON:

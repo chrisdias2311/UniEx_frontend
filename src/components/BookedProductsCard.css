@@ -1,0 +1,11 @@
+.booked_prod_card{
+    background-color: rgb(255, 255, 255);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border-color: antiquewhite;
+    border: 1px solid rgb(184, 184, 184);
+    margin-left: 15%;
+    margin-right: 15%;
+
+}

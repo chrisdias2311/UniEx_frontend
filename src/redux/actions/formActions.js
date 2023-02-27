@@ -142,6 +142,34 @@ export const searchEnotes = (search) => {
   }
 }
 
+export const bookProd = (product_id) => {
+  return{
+    type: ActionTypes.BOOK_PRODUCT,
+    payload: product_id
+  }
+}
+
+
+
+export const setAvailableProducts = (products) => {
+  return{
+    type: ActionTypes.SET_AVAILABLE_PRODUCTS,
+    payload: products
+  }
+}
+export const setBookedProducts = (products) => {
+  return{
+    type: ActionTypes.SET_BOOKED_PRODUCTS,
+    payload: products
+  }
+}
+export const setTransactions = (transactions) => {
+  return{
+    type: ActionTypes.SET_TRANSACTION_HISTORY,
+    payload: transactions
+  }
+}
+
 
 
 

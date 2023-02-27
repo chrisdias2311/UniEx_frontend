@@ -43,6 +43,7 @@ function Home() {
             });
     }, [])
     console.log("This is data: ", data.products.allProducts)
+    // setAllProducts(data.products.allProducts)
 
 
 
@@ -154,6 +155,7 @@ function Home() {
                                 price={item.price}
                                 image={item.productImage}
                                 link={item.link}
+                                date={item.sellingDate}
                             />
                         ) : <h1>No products found</h1>
                     }

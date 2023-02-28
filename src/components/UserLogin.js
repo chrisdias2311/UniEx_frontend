@@ -1,22 +1,12 @@
 import React, { useState } from 'react'
 import './UserLogin.css'
-// import { useDispatch } from 'react-redux';
-// import { signUpUser } from '../redux/actions/formActions';
-// import { Connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-// import { setUser } from '../redux/actions/formActions';
-
 import axios from 'axios';
 
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import PhotoCamera from '@mui/icons-material/PhotoCamera';
-import { grey } from '@mui/material/colors';
-
 import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
-
-import Box from '@mui/material/Box';
+import LinearProgress from '@mui/material/LinearProgress';
+import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 
 function UserLogin() {
@@ -28,6 +18,10 @@ function UserLogin() {
 
     });
 
+    const [loader, setLoader] = useState(false);
+    const [success, setSuccess] = useState(false);
+    const [error, setError] = useState(false);
+
 
     const handleUserNameChange = (event) => {
         setFormData({ ...formData, email: event.target.value });
@@ -36,63 +30,107 @@ function UserLogin() {
         setFormData({ ...formData, password: event.target.value });
     }
 
+    const goToSignup = (e) => {
+        e.preventDefault();
+        navigate('/signup')
+    }
+
 
     const submitSignupForm = (e) => {
         e.preventDefault();
         console.log("Signup called", formData);
+
         
 
-        const formdata = new FormData();
-        formdata.append('email', formData.email);
-        formdata.append('password', formData.password);
-        
+        if (formData.email !== '' && formData.password !== '') {
+            setLoader(true);
 
-        axios.post('http://localhost:5000/api/user/login', formdata, {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-            .then(res =>{ 
-                if(localStorage.getItem('user')){
-                    localStorage.clear();
-                    localStorage.setItem('user', JSON.stringify(res.data));
-                    alert("LoggedIn successfully")
-                    navigate('/')
-                }else{
-                    localStorage.setItem('user', JSON.stringify(res.data));
-                    alert("LoggedIn successfully")
-                    navigate('/')
-                }
 
-                // localStorage.setItem('admin', JSON.stringify(res.data));
-                // alert("You've been logged in successfully!")
-                // console.log("Successful!", res.data)
+            const formdata = new FormData();
+            formdata.append('email', formData.email);
+            formdata.append('password', formData.password);
 
-                // localStorage.setItem('admin', JSON.stringify(res.data));
+
+            axios.post('http://localhost:5000/api/user/login', formdata, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
             })
-            .catch(err => console.log(err));
+                .then(res => {
+                    setLoader(false);
+                    console.log(res)
+
+                    if (res.data.email) {
+                        setSuccess(true)
+                        if (localStorage.getItem('user')) {
+                            localStorage.clear();
+                            localStorage.setItem('user', JSON.stringify(res.data));
+                            setSuccess(false)
+                            navigate('/')
+                        } else {
+                            localStorage.setItem('user', JSON.stringify(res.data));
+                            navigate('/')
+                        }
+                    }
+                })
+                .catch(err => {
+                    setError(true);
+                    console.log(err)
+                });
+        } else {
+            setError(true);
+        }
     }
 
+
+
     return (
-        <div className='signup'>
+        <div className='userlogin'>
+            <br></br>
+            <br></br>
 
-            <div className='signup_container'>
+            <div className='userlogin_container'>
+
+                {
+                    loader ?
+                        <LinearProgress /> : <></>
+                }
+
                 <h1 class="tit">Login as User</h1>
+                <div className='ul_form_and_button'>
+                    <form >
 
-                <form >
+                        <div className='inputField'>
+                            <TextField className='inputField' fullWidth id="outlined-basic" value={formData.email} onChange={handleUserNameChange} label="Email" variant="outlined" />
+                        </div>
+                        <div className='inputField'>
+                            <TextField fullWidth type="password" className='inputField' id="outlined-basic" value={formData.password} onChange={handlePasswordChange} label="Password" variant="outlined" />
+                        </div>
+                        <br></br>
+                        <br></br>
+                    </form>
+                    <Button variant="contained" onClick={submitSignupForm}>
+                        Login
+                    </Button>
 
-                    <div className='inputField'>
-                        <TextField className='inputField' fullWidth id="outlined-basic" value={formData.email} onChange={handleUserNameChange} label="Email" variant="outlined" />
-                    </div>
-                    <div className='inputField'>
-                        <TextField fullWidth type="password" className='inputField' id="outlined-basic" value={formData.password} onChange={handlePasswordChange} label="Password" variant="outlined" />
-                    </div>
                     <br></br>
                     <br></br>
-                </form>
-                <Button variant="contained" onClick={submitSignupForm}>
-                    Login
-                </Button>
+
+                    {
+                        success ? <Alert severity="success">Logged in Successfully!</Alert> : (
+                            error ? <Alert severity="error">Make sure you've entered the correct details!</Alert> : <></>
+                        )
+                    }
+
+                    <br></br>
+
+                    <Typography sx={{ fontSize: '20px' }} color="text.secondary">
+                        Don't have an account ?
+                    </Typography>
+                    <Button onClick={goToSignup} size="small">Go to signup</Button>
+
+
+                </div>
             </div>
         </div>
     )

@@ -7,7 +7,7 @@ import { setProducts, setStationery, setNotes, setEnotes, setPreviousPapers, set
 
 import axios from 'axios'
 
-
+import LinearProgress from '@mui/material/LinearProgress';
 import Button from '@mui/material/Button';
 import { grey } from '@mui/material/colors';
 import { styled } from '@mui/material/styles';
@@ -19,6 +19,7 @@ function Home() {
     const dispatch = useDispatch();
     const data = useSelector((state) => state);
     const [products, setAllProducts] = useState([]);
+    const [loader, setLoader] = useState(true)
 
     const [search, setSearch] = useState([]);
     const [textSearch, setTextSearch] = useState('');
@@ -37,6 +38,7 @@ function Home() {
                 dispatch(setPreviousPapers(response.data))
                 dispatch(setEnotes(response.data))
                 setAllProducts(response.data)
+                setLoader(false)
             })
             .catch((error) => {
                 console.log(error);
@@ -52,23 +54,23 @@ function Home() {
         setTextSearch(e.target.value)
         if (data.products.buttons.allProducts === true) {
             dispatch(searchAllProducts(e.target.value))
-        }else if(data.products.buttons.stationery){
+        } else if (data.products.buttons.stationery) {
             dispatch(searchStationery(e.target.value))
-        }else if(data.products.buttons.notes){
+        } else if (data.products.buttons.notes) {
             dispatch(searchNotes(e.target.value))
-        }else if(data.products.buttons.previouspapers){
+        } else if (data.products.buttons.previouspapers) {
             dispatch(searchPreviousPapers(e.target.value))
-        }else if(data.products.buttons.enotes){
+        } else if (data.products.buttons.enotes) {
             dispatch(searchEnotes(e.target.value))
         }
         setSearch(data.products.searchproducts)
         console.log("The search:", search)
     }
     console.log("The search:", search)
-    
+
     const submitSearch = () => {
         console.log("The text search: ", textSearch)
-        if(textSearch!==''){
+        if (textSearch !== '') {
             setAllProducts(search)
         }
     }
@@ -117,12 +119,12 @@ function Home() {
                 <div className="home_search">
                     <div className='home_search_bar'>
                         <div className='inputField'>
-                            <Stack spacing={2} sx={{  height:55, minWidth: 250, maxWidth: 350, color:"white"}}>
+                            <Stack spacing={2} sx={{ height: 55, minWidth: 250, maxWidth: 350, color: "white" }}>
                                 <Autocomplete
                                     id="free-solo-demo"
                                     freeSolo
                                     options={search.map((option) => option.name)}
-                                    renderInput={(params) => <TextField  InputProps={{style: { color: 'white'},}} {...params} onChange={handleSearch} label="Search Products" />}
+                                    renderInput={(params) => <TextField InputProps={{ style: { color: 'white' }, }} {...params} onChange={handleSearch} label="Search Products" />}
                                 />
                             </Stack>
                         </div>
@@ -130,7 +132,6 @@ function Home() {
                         <ColorButton onClick={submitSearch} sx={{ maxWidth: 100, minWidth: 100, marginRight: 1, height: 40 }} variant="contained">Search</ColorButton>
                     </div>
                 </div>
-
 
                 <div className='buttonsPanel'>
                     <ColorButton onClick={allproducts} sx={{ maxWidth: 300, minWidth: 300, margin: 2, height: 45 }} variant="contained">All Products</ColorButton>
@@ -162,6 +163,11 @@ function Home() {
 
                 </div>
             </div>
+            {
+                loader ? <LinearProgress /> : <></>
+            }
+            <br></br>
+            <br></br>
         </div>
     )
 }

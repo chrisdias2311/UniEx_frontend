@@ -171,6 +171,15 @@ export const setTransactions = (transactions) => {
 }
 
 
+export const deleteProduct = (product_id) => {
+  console.log("Decline users called from formActons: ");
+  return{
+    type: ActionTypes.DELETE_PRODUCT,
+    payload:product_id
+  }
+}
+
+
 
 
 // export const setInvalidUsers = async() => {

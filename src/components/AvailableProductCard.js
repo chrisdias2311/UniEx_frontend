@@ -4,18 +4,41 @@ import './AvailableProductCard.css';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
+import { useDispatch } from 'react-redux';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router';
+import axios from 'axios';
+import { deleteProduct } from '../redux/actions/formActions';
 
 function AvailableProductCard({ id, ownerId, name, description, category, price, image, link }) {
+  const dispatch = useDispatch()
 
   const navigate = useNavigate();
 
   const updateProduct = (id) => {
     console.log(id)
     navigate('/dashboard/updateproduct/'+id)
+  }
+
+  const deleteProd =(id) => {
+
+    const formdata = new FormData();
+        formdata.append('id', id);
+
+        axios.post('http://localhost:5000/api/products/deleteproduct', formdata, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(res => {
+              console.log("This is product details details", res.data)
+              dispatch(deleteProduct(id))
+            })
+            .catch(err =>
+                console.log("This is the error", err),
+            );
   }
 
 
@@ -44,7 +67,7 @@ function AvailableProductCard({ id, ownerId, name, description, category, price,
         </CardContent>
         <CardActions sx={{ justifyContent: 'center' }}>
           <Button variant="contained" onClick={()=>updateProduct(id)}>Update</Button>
-          <Button sx={{ backgroundColor: 'red' }} variant="contained">Delete</Button>
+          <Button sx={{ ':hover': { bgcolor: 'red', color: 'white' }, bgcolor: 'red' }} onClick={()=>deleteProd(id)} variant="contained">Delete</Button>
         </CardActions>
       </Card>
     </div>

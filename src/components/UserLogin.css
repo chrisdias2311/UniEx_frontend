@@ -1,13 +1,15 @@
-.signup {
+.userlogin {
     /* background-color: white; */
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 3%;
+    background-color: rgb(235, 239, 243);
+    /* padding-bottom: 30%; */
 }
 
-.signup_logo {
+.userlogin_logo {
     margin-top: 20px;
     margin-bottom: 20px;
     object-fit: contain;
@@ -16,39 +18,47 @@
     margin-left: auto;
 }
 
-.signup_container {
-    width: 30%;
+.userlogin_container {
+    width: 35%;
     height: fit-content;
     display: flex;
     flex-direction: column;
     border-radius: 10px;
     border: 1px solid lightgray;
-    padding: 20px;
+    /* padding: 20px; */
     background-color: white;
     margin-bottom: 30px;
+    margin-top: 5%;
 }
 
 .inputField{
     margin: 8px;
 }
 
-.signup_container>h1 {
+.userlogin_container>h1 {
     font-weight: 500;
     margin-bottom: 20px;
 }
 
-.signup_container>form>h5 {
+.userlogin_container>form>h5 {
     margin-bottom: 5px;
 }
 
-.signup_container>form>input {
+/* .userlogin_container>form {
+    margin: 5%;
+} */
+.ul_form_and_button{
+    margin: 5%;
+}
+
+.userlogin_container>form>input {
     height: 30px;
     margin-bottom: 10px;
     background-color: white;
     width: 98%;
 }
 
-.signup_container>p {
+.userlogin_container>p {
     margin-top: 15px;
     font-size: 12px;
 }
@@ -60,7 +70,7 @@ imageUpload_Button:howver{
     background-color: #616161;
 }
 
-.signup_signInButton {
+.userlogin_signInButton {
     background: #f0c14b;
     border-radius: 2px;
     width: 100%;
@@ -70,11 +80,66 @@ imageUpload_Button:howver{
     border-color: #a88734 #9c7e31 #846a29;
 }
 
-.signup_registerButton {
+.userlogin_registerButton {
     border-radius: 2px;
     width: 100%;
     height: 30px;
     border: 1px solid;
     margin-top: 10px;
     border-color: darkgray;
+}
+
+
+@media screen and (max-width: 1246px) {
+    .userlogin_container {
+        width: 50%;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        border-radius: 10px;
+        border: 1px solid lightgray;
+        /* padding: 20px; */
+        background-color: white;
+        margin-bottom: 30px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .userlogin_container {
+        width: 60%;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        border-radius: 10px;
+        border: 1px solid lightgray;
+        /* padding: 20px; */
+        background-color: white;
+        margin-bottom: 30px;
+    }
+}
+@media screen and (max-width: 570px) {
+    .userlogin_container {
+        width: 70%;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        border-radius: 10px;
+        border: 1px solid lightgray;
+        /* padding: 20px; */
+        background-color: white;
+        margin-bottom: 30px;
+    }
+}
+@media screen and (max-width: 570px) {
+    .userlogin_container {
+        width: 80%;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        border-radius: 10px;
+        border: 1px solid lightgray;
+        /* padding: 20px; */
+        background-color: white;
+        margin-bottom: 30px;
+    }
 }

@@ -41,6 +41,7 @@ function ProductCard({ id, ownerId, name, description, category, price, image, l
 
 
   const bookProduct = (productId, ownerId, productName) => {
+    
     console.log("Product id from card", productId)
     const formdata = new FormData();
     formdata.append('id', productId);
@@ -98,7 +99,7 @@ function ProductCard({ id, ownerId, name, description, category, price, image, l
           {
             link ? <Button onClick={() => downloadProduct(id, ownerId, name)} href={link} variant="contained">Download</Button> : <Button onClick={() => bookProduct(id, ownerId, name)} variant="contained">Book Now</Button>
           }
-          <Button onClick={()=>viewProduct(id)} size="small">View</Button>
+          {/* <Button onClick={()=>viewProduct(id)} size="small">View</Button> */}
         </CardActions>
       </Card>
     </div>

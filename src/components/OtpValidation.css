@@ -1,0 +1,32 @@
+.otp_form{
+    width: 35%;
+    
+}
+.verify_otp{
+    display: flex;
+    justify-content: center;
+    margin: 1%;
+}
+
+
+@media screen and (max-width: 1246px) {
+    .otp_form{
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .otp_form{
+        width: 60%;
+    }
+}
+@media screen and (max-width: 570px) {
+    .otp_form{
+        width: 70%;
+    }
+}
+@media screen and (max-width: 570px) {
+    .otp_form{
+        width: 80%;
+    }
+}

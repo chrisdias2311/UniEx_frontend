@@ -1,6 +1,6 @@
 import React from 'react'
 import './UserDashboard.css'
-import MyProductCard from './AvailableProductCard'
+import AvailableProductCard from './AvailableProductCard'
 import { setAvailableProducts, setBookedProducts, setTransactions } from '../redux/actions/formActions'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
@@ -50,6 +50,8 @@ function UserDashboard() {
         console.log("This is the error", err),
       );
   }, [])
+
+  const available_products = data.userdashboard.availableproducts;
 
   const getAvailableProducts = () => {
     setAvalaibleProductsButton(true);
@@ -154,8 +156,8 @@ function UserDashboard() {
           <div className='available_products'>
             
             {
-              availableProds.length > 0 ? availableProds.map((item, index) =>
-                  <MyProductCard
+              available_products.length > 0 ? available_products.map((item, index) =>
+                  <AvailableProductCard
                     id={item._id}
                     ownerId={item.ownerId}
                     name={item.name}
@@ -165,7 +167,7 @@ function UserDashboard() {
                     image={item.productImage}
                     link={item.link}
                   />
-              ) : <h1>No products found</h1>
+              ) : <h4>No products found</h4>
             }
           </div>
           </>
@@ -183,7 +185,7 @@ function UserDashboard() {
                       productName={item.productName}
                       date={item.date}
                     />
-                  ) : <h1>No transactions found</h1>
+                  ) : <h4>No transactions found</h4>
                 }
               </div>
               :
@@ -198,7 +200,7 @@ function UserDashboard() {
                       productName={item.productName}
                       date={item.date}
                     />
-                  ) : <h1>No transactions found</h1>
+                  ) : <h4>No transactions found</h4>
                 }
 
 

@@ -83,7 +83,8 @@ function DrawerAppBar(props) {
     }
     const navigateToUserProfile = () => {
         setAnchorEl(null);
-        navigate('/userprofile')
+        // const P_id = JSON.parse(localStorage.getItem('user')).pid
+        navigate('/profile/'+JSON.parse(localStorage.getItem('user'))._id)
     }
 
     const logout = () => {
@@ -264,11 +265,11 @@ function DrawerAppBar(props) {
                                     <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
                                         <Button onClick={navigateToHome} sx={{ color: '#fff' }}>Home</Button>
                                         <Button onClick={navigateToAbout} sx={{ color: '#fff' }}>About</Button>
-                                        <Button onClick={navigateToAddProduct} sx={{ color: '#fff' }}>Add Product</Button>
                                         <Button onClick={navigateToMyDashboard} sx={{ color: '#fff' }}>Dashboard</Button>
-                                        <Button onClick={navigateToPeddler} sx={{ color: '#fff' }}>Peddler</Button>
+                                        <Button onClick={navigateToAddProduct} sx={{ color: '#fff' }}>Add Product</Button>
+                                        {/* <Button onClick={navigateToPeddler} sx={{ color: '#fff' }}>Peddler</Button>
                                         <Button onClick={navigateToSignUp} sx={{ color: '#fff', paddingRight: 3 }}>Sign-Up</Button>
-                                        <Button onClick={navigateToAdminLogin} sx={{ color: '#fff' }}>Sign-In as Admin</Button>
+                                        <Button onClick={navigateToAdminLogin} sx={{ color: '#fff' }}>Sign-In as Admin</Button> */}
                                     </Box>
                                     :
                                     <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
@@ -328,6 +329,8 @@ function DrawerAppBar(props) {
                                             <MenuItem onClick={navigateToUserProfile}>Profile</MenuItem>
                                             <MenuItem onClick={logout}>Logout of {user}</MenuItem>
                                             <MenuItem onClick={navigateToSignIn}>Sign in to existing account</MenuItem>
+                                            <MenuItem onClick={navigateToSignUp}>Sign up</MenuItem>
+                                            <MenuItem onClick={navigateToAdminLogin}>Sign in as admin</MenuItem>
                                         </Menu>
                                     </div>
                                     :

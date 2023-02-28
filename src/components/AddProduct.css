@@ -1,4 +1,4 @@
-.signup {
+.addproduct {
     /* background-color: white; */
     height: 100%;
     display: flex;
@@ -6,7 +6,7 @@
     align-items: center;
     padding-top: 3%;
     background-color: rgb(235, 239, 243);
-    padding-bottom: 30%;
+    padding-bottom: 40%;
 }
 
 .signup_logo {
@@ -18,7 +18,7 @@
     margin-left: auto;
 }
 
-.signup_container {
+.addproduct_container {
     width: 35%;
     height: fit-content;
     display: flex;
@@ -30,7 +30,7 @@
     margin-bottom: 30px;
     margin-top: 5%;
 }
-.sp_form_and_button{
+.ap_form_and_button{
     margin: 5%;
 }
 
@@ -38,23 +38,23 @@
     margin: 8px;
 }
 
-.signup_container>h1 {
+.addproduct_container>h1 {
     font-weight: 500;
     margin-bottom: 20px;
 }
 
-.signup_container>form>h5 {
+.addproduct_container>form>h5 {
     margin-bottom: 5px;
 }
 
-.signup_container>form>input {
+.addproduct_container>form>input {
     height: 30px;
     margin-bottom: 10px;
     background-color: white;
     width: 98%;
 }
 
-.signup_container>p {
+.addproduct_container>p {
     margin-top: 15px;
     font-size: 12px;
 }
@@ -88,33 +88,73 @@ imageUpload_Button:howver{
 
 
 @media screen and (max-width: 1246px) {
-    .signup_container {
+    .addproduct_container {
         width: 50%;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        border-radius: 10px;
+        border: 1px solid lightgray;
+        /* padding: 20px; */
+        background-color: white;
+        margin-bottom: 30px;
         margin-top: 10%;
     }
 }
 
 @media screen and (max-width: 800px) {
-    .signup_container {
+    .addproduct_container {
         width: 60%;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        border-radius: 10px;
+        border: 1px solid lightgray;
+        /* padding: 20px; */
+        background-color: white;
+        margin-bottom: 30px;
         margin-top:12%;
     }
 }
 @media screen and (max-width: 570px) {
-    .signup_container {
+    .addproduct_container {
         width: 70%;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        border-radius: 10px;
+        border: 1px solid lightgray;
+        /* padding: 20px; */
+        background-color: white;
+        margin-bottom: 30px;
         margin-top: 14%;
     }
 }
 @media screen and (max-width: 570px) {
-    .signup_container {
+    .addproduct_container {
         width: 80%;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        border-radius: 10px;
+        border: 1px solid lightgray;
+        /* padding: 20px; */
+        background-color: white;
+        margin-bottom: 30px;
         margin-top: 16%;
     }
 }
 @media screen and (max-width: 400px) {
-    .signup_container {
+    .addproduct_container {
         width: 80%;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        border-radius: 10px;
+        border: 1px solid lightgray;
+        /* padding: 20px; */
+        background-color: white;
+        margin-bottom: 30px;
         margin-top: 20%;
     }
 }

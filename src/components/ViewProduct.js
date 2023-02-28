@@ -13,33 +13,55 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 function ViewProduct() {
-    const params = useParams()
+  const params = useParams()
 
 
-    useEffect(() => {
+  useEffect(() => {
 
-        const formdata = new FormData();
-        formdata.append('productid', params.id);
+    const formdata = new FormData();
+    formdata.append('productid', params.id);
 
-        axios.post('http://localhost:5000/api/products/productdetails', formdata, {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-            .then(res => {
-                console.log("This is the res", res.data)
-                
-            })
-            .catch(err =>
-                console.log("This is the error", err),
-            );
-    }, [])
+    axios.post('http://localhost:5000/api/products/productdetails', formdata, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(res => {
+        console.log("This is the res", res.data)
+
+        // if (res.data.category === 'E-notes and Study Material') {
+
+        //   formdata.append('userid', res.data.ownerId);
+
+        //   axios.post('http://localhost:5000/api/transactions/userdetails', formdata, {
+        //     headers: {
+        //       'Content-Type': 'application/json',
+        //     },
+        //   })
+        //     .then(res => {
+        //       console.log("This is the res", res.data)
+
+        //     })
+        //     .catch(err =>
+        //       console.log("This is the error", err),
+        //     );
+
+        // }
+
+      })
+      .catch(err =>
+        console.log("This is the error", err),
+      );
+  }, [])
 
 
   return (
     <div>
       <h1>V</h1>
-      <h1>Product Datails</h1>
+      <h1>Product Details</h1>
+
+
+      
 
 
     </div>

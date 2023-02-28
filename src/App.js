@@ -18,6 +18,8 @@ import { useEffect } from 'react';
 import InvalidUserCard from './components/InvalidUserCard';
 import UpdateProduct from './components/UpdateProduct';
 import ViewProduct from './components/ViewProduct';
+import OtpValidation from './components/OtpValidation';
+import Profile from './components/Profile';
 
 function App() {
   return (
@@ -40,6 +42,9 @@ function App() {
         <Route path='/dashboard/transactiondetails/:id' element={<><TransactionDetails/></>}></Route>
         <Route path='/dashboard/updateproduct/:id' element={<><UpdateProduct/></>}></Route>
         <Route path='/viewproduct/:id' element={<><ViewProduct/></>}></Route>
+        <Route path='/validateotp/:id' element={<><OtpValidation/></>}></Route>
+        <Route path='/profile/:id' element={<><Profile/></>}></Route>
+
 
 
         <Route path='/about' element={<><h1>User Profile</h1><h1>About</h1></>}></Route>

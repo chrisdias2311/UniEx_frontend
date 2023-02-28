@@ -14,7 +14,6 @@ import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import { grey } from '@mui/material/colors';
 
 import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
 
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
@@ -22,6 +21,8 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+
+import LinearProgress from '@mui/material/LinearProgress';
 
 function Signup() {
 
@@ -123,6 +124,9 @@ function Signup() {
     });
     const imageData = new FormData();
     const [imageUpload, setImageUpload] = useState(false);
+    const [loader, setLoader] = useState(false);
+    const [success, setSuccess] = useState(false);
+    const [error, setError] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -165,214 +169,204 @@ function Signup() {
         setImageUpload(true);
     }
 
-    // const handleSubmit = (event) => {
-    //     event.preventDefault();
-    //     console.log("This is form data: ", console.log(formData));
-    // };
-
-    // const registerUser = async () => {
-    //     const email = formData.email;
-    //     const firstname = formData.firstName;
-    //     const lastname = formData.lastName;
-    //     const password = formData.password;
-    //     const IDCard = formData.image;
-
-    //     console.log("This is the formdata ", email, firstname, lastname, password, IDCard)
-
-    //     if (formData.email.length > 1 && formData.password.length > 1) {
-    //         let result = await fetch('http://localhost:5000/api/user/register', {
-    //             method: 'post',
-    //             body: JSON.stringify({ email, firstname, lastname, password, IDCard }),
-    //             headers: {
-    //                 'Content-Type': 'application/json'
-    //             },
-    //         })
-    //         result = await result.json()
-
-    //         // localStorage.setItem("user", JSON.stringify(result));
-    //         // localStorage.setItem("owner", name);
-
-    //         if (result.auth) {
-    //             alert("You have been succesfully registered!")
-    //             localStorage.setItem('token', JSON.stringify(result.auth))
-    //             localStorage.setItem('user', JSON.stringify(result.newUser))
-    //             dispatch(setUser(result.newUser))
-    //             navigate('/');
-    //         }
-    //     } else {
-    //         alert("Please enter valid details");
-    //     }
-    // }
 
 
     const submitSignupForm = (e) => {
-        e.preventDefault();
-        console.log("Signup called");
+        if (formData.pid !== '' && formData.email !== '' && formData.firstName !== '' && formData.lastName !== '' && formData.phone !== '' && formData.year !== '' && formData.dept !== '' && formData.class !== '' && formData.password !== '' && formData.image !== '') {
 
-        const formdata = new FormData();
-        formdata.append('pid', formData.pid);
-        formdata.append('email', formData.email);
-        formdata.append('firstname', formData.firstName);
-        formdata.append('lastname', formData.lastName);
-        formdata.append('phone', formData.phone);
-        formdata.append('year', formData.year);
-        formdata.append('dept', formData.dept);
-        formdata.append('class', formData.class);
-        formdata.append('password', formData.password);
-        formdata.append('file', formData.image);
 
-        axios.post('http://localhost:5000/api/user/register', formdata, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
-        })
-            .then(res => {
-                if(localStorage.getItem('user')){
-                    localStorage.clear();
-                    localStorage.setItem('user', JSON.stringify(res.data));
-                }else{
-                    localStorage.setItem('user', JSON.stringify(res.data));
-                }
+            e.preventDefault();
+            console.log("Signup called");
+
+            const formdata = new FormData();
+            formdata.append('pid', formData.pid);
+            formdata.append('email', formData.email);
+            formdata.append('firstname', formData.firstName);
+            formdata.append('lastname', formData.lastName);
+            formdata.append('phone', formData.phone);
+            formdata.append('year', formData.year);
+            formdata.append('dept', formData.dept);
+            formdata.append('class', formData.class);
+            formdata.append('password', formData.password);
+            formdata.append('file', formData.image);
+
+            axios.post('http://localhost:5000/api/user/register', formdata, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
             })
-            .catch(err => console.log(err));
+                .then(res => {
+                    setLoader(true)
+                    if (localStorage.getItem('user')) {
+                        localStorage.clear();
+                        localStorage.setItem('user', JSON.stringify(res.data));
+                    } else {
+                        localStorage.setItem('user', JSON.stringify(res.data));
+                    }
+
+                    const verifyemail = JSON.parse(localStorage.getItem('user')).email
+                    formdata.append('verifyEmail', verifyemail);
+
+                    axios.post('http://localhost:5000/api/user/getuser', formdata, {
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    })
+                        .then(res => {
+                            if (res.data.email) {
+                                setError(false)
+                                setSuccess(true);
+                                if (localStorage.getItem('user')) {
+                                    localStorage.clear();
+                                    localStorage.setItem('user', JSON.stringify(res.data));
+                                } else {
+                                    localStorage.setItem('user', JSON.stringify(res.data));
+                                }
+                                navigate('/validateotp/' + res.data._id)
+                            }
+                        })
+                        .catch(err => {
+                            setError(true)
+                            console.log(err)
+                        });
+
+
+                })
+                .catch(err => console.log(err));
+        } else {
+            setError(true)
+        }
     }
 
     return (
         <div className='signup'>
-            {/* <img
-                className='signup_logo'
-                src={Logo}
-            /> */}
 
             <div className='signup_container'>
+                {
+                    loader ?<LinearProgress /> : <></>
+                }
                 <h1>Sign-up</h1>
 
-                <form >
-                    <div className='inputField'>
-                        <TextField className='inputField' fullWidth id="outlined-basic" value={formData.pid} onChange={handlePidChange} label="PID*" variant="outlined" />
-                    </div>
+                <div className='sp_form_and_button'>
+                    <form >
+                        <div className='inputField'>
+                            <TextField className='inputField' fullWidth id="outlined-basic" value={formData.pid} onChange={handlePidChange} label="PID*" variant="outlined" />
+                        </div>
 
-                    <div className='inputField'>
-                        <TextField className='inputField' fullWidth id="outlined-basic" value={formData.email} onChange={handleEmailChange} label="Email" variant="outlined" />
-                    </div>
+                        <div className='inputField'>
+                            <TextField className='inputField' fullWidth id="outlined-basic" value={formData.email} onChange={handleEmailChange} label="Email*" variant="outlined" />
+                        </div>
 
-                    <div className='inputField'>
-                        <TextField className='inputField' fullWidth id="outlined-basic" value={formData.firstName} onChange={handleFirstNameChange} label="Firstname" variant="outlined" />
-                    </div>
+                        <div className='inputField'>
+                            <TextField className='inputField' fullWidth id="outlined-basic" value={formData.firstName} onChange={handleFirstNameChange} label="Firstname*" variant="outlined" />
+                        </div>
 
-                    <div className='inputField'>
-                        <TextField className='inputField' fullWidth id="outlined-basic" value={formData.lastName} onChange={handleLastNameChange} label="Lastname" variant="outlined" />
-                    </div>
+                        <div className='inputField'>
+                            <TextField className='inputField' fullWidth id="outlined-basic" value={formData.lastName} onChange={handleLastNameChange} label="Lastname*" variant="outlined" />
+                        </div>
 
-                    <div className='inputField'>
-                        <TextField className='inputField' fullWidth id="outlined-basic" value={formData.phone} onChange={handlePhoneChange} label="Phone-no" variant="outlined" />
-                    </div>
-
-
-
-                    <div className='inputField'>
-                        <FormControl fullWidth>
-                            <InputLabel id="demo-simple-select-label">Select Year</InputLabel>
-                            <Select
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
-                                value={formData.year}
-                                label="Select Class"
-                                onChange={handleYearChange}
-                            >
-                                {
-                                    year.map((option) =>
-                                        (<MenuItem value={option.value} key={option.value}>{option.value}</MenuItem>)
-                                    )
-                                }
-                            </Select>
-                        </FormControl>
-                    </div>
-
-                    <div className='inputField'>
-                        <FormControl margin="normal" fullWidth>
-                            <InputLabel id="demo-simple-select-label">Select Dept</InputLabel>
-                            <Select
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
-                                value={formData.dept}
-                                label="Select Class"
-                                onChange={handleDeptChange}
-                            >
-                                {
-                                    dept.map((option) =>
-                                        (<MenuItem value={option.value} key={option.value}>{option.value}</MenuItem>)
-                                    )
-                                }
-                            </Select>
-                        </FormControl>
-                    </div>
-
-                    <div className='inputField'>
-                        <FormControl margin="normal" fullWidth>
-                            <InputLabel id="demo-simple-select-label">Select Class</InputLabel>
-                            <Select
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
-                                value={formData.class}
-                                label="Select Class"
-                                onChange={handleDivChange}
-                            >
-                                {
-                                    div.map((option) =>
-                                        (<MenuItem value={option.value} key={option.value}>{option.value}</MenuItem>)
-                                    )
-                                }
-                            </Select>
-                        </FormControl>
-                    </div>
-
-                    <div className='inputField'>
-                        <TextField fullWidth type="password" className='inputField' id="outlined-basic" value={formData.password} onChange={handlePasswordChange} label="Password" variant="outlined" />
-                    </div>
+                        <div className='inputField'>
+                            <TextField className='inputField' fullWidth id="outlined-basic" value={formData.phone} onChange={handlePhoneChange} label="Phone-no*" variant="outlined" />
+                        </div>
 
 
 
+                        <div className='inputField'>
+                            <FormControl fullWidth>
+                                <InputLabel id="demo-simple-select-label">Select Year*</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={formData.year}
+                                    label="Select Class"
+                                    onChange={handleYearChange}
+                                >
+                                    {
+                                        year.map((option) =>
+                                            (<MenuItem value={option.value} key={option.value}>{option.value}</MenuItem>)
+                                        )
+                                    }
+                                </Select>
+                            </FormControl>
+                        </div>
 
+                        <div className='inputField'>
+                            <FormControl margin="normal" fullWidth>
+                                <InputLabel id="demo-simple-select-label">Select Dept*</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={formData.dept}
+                                    label="Select Class"
+                                    onChange={handleDeptChange}
+                                >
+                                    {
+                                        dept.map((option) =>
+                                            (<MenuItem value={option.value} key={option.value}>{option.value}</MenuItem>)
+                                        )
+                                    }
+                                </Select>
+                            </FormControl>
+                        </div>
 
-                    {/* <h5>E-mail</h5>
-                    <input type='text' value={formData.email} onChange={handleEmailChange} />
+                        <div className='inputField'>
+                            <FormControl margin="normal" fullWidth>
+                                <InputLabel id="demo-simple-select-label">Select Class*</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={formData.class}
+                                    label="Select Class"
+                                    onChange={handleDivChange}
+                                >
+                                    {
+                                        div.map((option) =>
+                                            (<MenuItem value={option.value} key={option.value}>{option.value}</MenuItem>)
+                                        )
+                                    }
+                                </Select>
+                            </FormControl>
+                        </div>
 
-                    <h5>First Name</h5>
-                    <input type='text' value={formData.firstName} onChange={handleFirstNameChange} />
+                        <div className='inputField'>
+                            <TextField fullWidth type="password" className='inputField' id="outlined-basic" value={formData.password} onChange={handlePasswordChange} label="Password*" variant="outlined" />
+                        </div>
 
-                    <h5>Last Name</h5>
-                    <input type='text' value={formData.lastName} onChange={handleLastNameChange} />
+                        <h5>Upload SFIT Identity card*</h5>
+                        <Button variant="contained" value={formData.image} component="label" onChange={handleIdImageChange}>
+                            Upload
+                            <input hidden type="file" />
+                        </Button>
+                        <IconButton color="primary" aria-label="upload picture" component="label" onChange={handleIdImageChange}>
+                            <input hidden type="file" />
+                            <PhotoCamera />
+                        </IconButton>
 
-                    <h5>Password</h5>
-                    <input type='password' value={formData.password} onChange={handlePasswordChange}></input> */}
+                        <br></br>
+                        <br></br>
 
-                    <h5>Upload SFIT Identity card</h5>
-                    <Button variant="contained" value={formData.image} component="label" onChange={handleIdImageChange}>
-                        Upload
-                        <input hidden type="file" />
-                    </Button>
-                    <IconButton color="primary" aria-label="upload picture" component="label" onChange={handleIdImageChange}>
-                        <input hidden type="file" />
-                        <PhotoCamera />
-                    </IconButton>
+                        {
+                            imageUpload ?
+                                <Alert severity="success">{formData.image.name}</Alert>
+                                :
+                                <div></div>
+                        }
+                    </form>
 
-                    <br></br>
-                    <br></br>
+                    <p>by signing-up you agree to UniEx conditions of Use and sale. Please see our Privacy Notice</p>
 
                     {
-                        imageUpload ?
-                        <Alert severity="success">{formData.image.name}</Alert>
-                            :
-                            <div></div>
+                        success ? <Alert severity="success">Logged in Successfully!</Alert> : (
+                            error ? <Alert severity="error">Make sure you've entered the correct details!</Alert> : <></>
+                        )
                     }
-                </form>
 
-                <p>by signing-in you agree to AMAZON FAKE CLONE conditions of Use and sale. Please see our Privacy Notice, our Cookies Noties and our Interest-Based Ads </p>
+                    <br></br>
 
-                <Button variant="contained" onClick={submitSignupForm}>
-                    Create UniEx Account
-                </Button>
+                    <Button variant="contained" onClick={submitSignupForm}>
+                        Create UniEx Account
+                    </Button>
+                </div>
             </div>
         </div>
     )

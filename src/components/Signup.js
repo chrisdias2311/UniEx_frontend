@@ -197,12 +197,8 @@ function Signup() {
             })
                 .then(res => {
                     setLoader(true)
-                    if (localStorage.getItem('user')) {
-                        localStorage.clear();
-                        localStorage.setItem('user', JSON.stringify(res.data));
-                    } else {
-                        localStorage.setItem('user', JSON.stringify(res.data));
-                    }
+                    localStorage.clear();
+                    localStorage.setItem('user', JSON.stringify(res.data));
 
                     const verifyemail = JSON.parse(localStorage.getItem('user')).email
                     formdata.append('verifyEmail', verifyemail);
@@ -216,12 +212,8 @@ function Signup() {
                             if (res.data.email) {
                                 setError(false)
                                 setSuccess(true);
-                                if (localStorage.getItem('user')) {
-                                    localStorage.clear();
-                                    localStorage.setItem('user', JSON.stringify(res.data));
-                                } else {
-                                    localStorage.setItem('user', JSON.stringify(res.data));
-                                }
+                                localStorage.clear();
+                                localStorage.setItem('user', JSON.stringify(res.data));
                                 navigate('/validateotp/' + res.data._id)
                             }
                         })
@@ -229,8 +221,6 @@ function Signup() {
                             setError(true)
                             console.log(err)
                         });
-
-
                 })
                 .catch(err => console.log(err));
         } else {
@@ -243,7 +233,7 @@ function Signup() {
 
             <div className='signup_container'>
                 {
-                    loader ?<LinearProgress /> : <></>
+                    loader ? <LinearProgress /> : <></>
                 }
                 <h1>Sign-up</h1>
 

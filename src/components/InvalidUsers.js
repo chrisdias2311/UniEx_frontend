@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 
 import InvalidUserCard from "./InvalidUserCard";
-import {setsetInvalidUsers} from '../redux/actions/formActions'
+import { setsetInvalidUsers } from '../redux/actions/formActions'
 import { getInvalidUser } from "../api/api";
 import * as api from '../api/api'
 import { setInvalidUsers } from "../redux/actions/formActions";
@@ -17,7 +17,7 @@ function InvalidUsers() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const data  = useSelector((state) => state);
+    const data = useSelector((state) => state);
 
     useEffect(() => {
         if (!localStorage.getItem("admin")) {
@@ -41,27 +41,26 @@ function InvalidUsers() {
     return (
 
         <div>
+            <h1>.</h1>
             <h1>Validate Users</h1>
             <div className="main">
-                <div className="leftPanel"></div>
-                <div className="rightPanel">
-                    {
-                        users.length > 0 ? users.map((item, index) =>
-                            <InvalidUserCard
-                              id ={item._id}
-                              pid={item.pid}
-                              firstname={item.firstname}
-                              lastname={item.lastname}
-                              phone={item.phone}
-                              email={item.email}
-                              year={item.year}
-                              dept={item.dept}
-                              div={item.class}
-                              idimage={item.IDcard}
-                            />
-                        ) : <h1>No users found</h1>
-                    }
-                </div>
+                {
+                    users.length > 0 ? users.map((item, index) =>
+                        <InvalidUserCard
+                            id={item._id}
+                            pid={item.pid}
+                            firstname={item.firstname}
+                            lastname={item.lastname}
+                            phone={item.phone}
+                            email={item.email}
+                            year={item.year}
+                            dept={item.dept}
+                            div={item.class}
+                            idimage={item.IDcard}
+                            verified={item.verified}
+                        />
+                    ) : <h1>No users found</h1>
+                }
             </div>
         </div>
     );

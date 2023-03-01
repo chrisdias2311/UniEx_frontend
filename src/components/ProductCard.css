@@ -36,3 +36,10 @@
     color: rgb(255, 255, 255);
     border-radius: 7px;
 }
+.link_tag{
+    color: blue;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}

@@ -58,40 +58,44 @@ function AdminRegister() {
                 console.log("This is the error", err),
             );
 
-               
+
     }
 
 
     return (
         <div className='adminregister'>
             <div className='adminRegisterForm'>
+
+
                 <h1>Register Admin</h1>
 
-                <form>
-                    <div className='inputField'>
-                        <TextField className='inputField' fullWidth id="outlined-basic" value={formData.pid} onChange={handlePidChange} label="PID*" variant="outlined" />
-                    </div>
+                <div className='ar_form_and_button'>
+                    <form>
+                        <div className='inputField'>
+                            <TextField className='inputField' fullWidth id="outlined-basic" value={formData.pid} onChange={handlePidChange} label="PID*" variant="outlined" />
+                        </div>
 
-                    <div className='inputField'>
-                        <TextField className='inputField' fullWidth id="outlined-basic" value={formData.email} onChange={handleEmailChange} label="Email*" variant="outlined" />
-                    </div>
+                        <div className='inputField'>
+                            <TextField className='inputField' fullWidth id="outlined-basic" value={formData.email} onChange={handleEmailChange} label="Email*" variant="outlined" />
+                        </div>
 
-                    <div className='inputField'>
-                        <TextField className='inputField' fullWidth id="outlined-basic" value={formData.firstName} onChange={handleFirstNameChange} label="Firstname*" variant="outlined" />
-                    </div>
+                        <div className='inputField'>
+                            <TextField className='inputField' fullWidth id="outlined-basic" value={formData.firstName} onChange={handleFirstNameChange} label="Firstname*" variant="outlined" />
+                        </div>
 
-                    <div className='inputField'>
-                        <TextField className='inputField' fullWidth id="outlined-basic" value={formData.lastName} onChange={handleLastNameChange} label="Lastname*" variant="outlined" />
-                    </div>
+                        <div className='inputField'>
+                            <TextField className='inputField' fullWidth id="outlined-basic" value={formData.lastName} onChange={handleLastNameChange} label="Lastname*" variant="outlined" />
+                        </div>
 
-                    <div className='inputField'>
-                        <TextField fullWidth type="password" className='inputField' id="outlined-basic" value={formData.password} onChange={handlePasswordChange} label="Password" variant="outlined" />
-                    </div>
-                </form>
+                        <div className='inputField'>
+                            <TextField fullWidth type="password" className='inputField' id="outlined-basic" value={formData.password} onChange={handlePasswordChange} label="Password" variant="outlined" />
+                        </div>
+                    </form>
 
-                <Button variant="contained" onClick={createAdmin}>
-                    Create Admin Account
-                </Button>
+                    <Button variant="contained" onClick={createAdmin}>
+                        Create Admin Account
+                    </Button>
+                </div>
             </div>
         </div>
     )

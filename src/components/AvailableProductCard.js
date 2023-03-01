@@ -49,7 +49,7 @@ function AvailableProductCard({ id, ownerId, name, description, category, price,
           component="img"
           height="200"
           image={"http://" + image}
-          alt="Paella dish"
+          alt="Image"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">

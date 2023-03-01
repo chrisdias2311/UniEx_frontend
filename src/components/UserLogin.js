@@ -40,7 +40,7 @@ function UserLogin() {
         e.preventDefault();
         console.log("Signup called", formData);
 
-        
+
 
         if (formData.email !== '' && formData.password !== '') {
             setLoader(true);
@@ -62,15 +62,10 @@ function UserLogin() {
 
                     if (res.data.email) {
                         setSuccess(true)
-                        if (localStorage.getItem('user')) {
-                            localStorage.clear();
-                            localStorage.setItem('user', JSON.stringify(res.data));
-                            setSuccess(false)
-                            navigate('/')
-                        } else {
-                            localStorage.setItem('user', JSON.stringify(res.data));
-                            navigate('/')
-                        }
+                        localStorage.clear();
+                        localStorage.setItem('user', JSON.stringify(res.data));
+                        setSuccess(false)
+                        navigate('/')
                     }
                 })
                 .catch(err => {

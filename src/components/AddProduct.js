@@ -31,11 +31,10 @@ function AddProduct() {
 
     useEffect(() => {
         if (!localStorage.getItem('user')) {
-            alert("Please Sign-In to add a product")
-            navigate("/signup");
+            navigate("/userlogin");
         } else if (JSON.parse(localStorage.getItem('user')).validity !== "Yes") {
             // alert("Your account is under validation process")
-            navigate("/");
+            navigate("/accountunderreview");
         }
     }, []);
 

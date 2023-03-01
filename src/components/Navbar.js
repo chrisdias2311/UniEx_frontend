@@ -115,6 +115,11 @@ function DrawerAppBar(props) {
     const navigateToValidateUsers = () => {
         navigate('/invalidusers')
     }
+    const navigateToViewProducts = () => {
+        navigate('/viewproducts')
+    }
+    
+
 
 
     const handleDrawerToggle = () => {
@@ -181,10 +186,7 @@ function DrawerAppBar(props) {
                                 <ListItem disablePadding>
                                     <ListItemButton sx={{ textAlign: 'center', display: 'flex', flexDirection: 'column' }}>
                                         <ListItemText onClick={navigateToHome}>Home</ListItemText>
-                                        <ListItemText onClick={navigateToAbout}>About</ListItemText>
-                                        <ListItemText onClick={navigateToAdminDashboard}>Admin Dashboard</ListItemText>
                                         <ListItemText onClick={navigateToValidateUsers}>Validate Users</ListItemText>
-                                        <ListItemText onClick={navigateToViewUsers}>View Users</ListItemText>
                                         <ListItemText onClick={navigateToRegisterAdmin}>Register Admin</ListItemText>
                                     </ListItemButton>
                                 </ListItem>
@@ -193,6 +195,7 @@ function DrawerAppBar(props) {
                                     <ListItemButton sx={{ textAlign: 'center', display: 'flex', flexDirection: 'column' }}>
                                         <ListItemText onClick={logout}>Logout</ListItemText>
                                         <ListItemText onClick={navigateToSignIn}>Sign-In as User</ListItemText>
+                                        <ListItemText onClick={navigateToSignUp}>Sign-Up</ListItemText>
                                     </ListItemButton>
                                 </ListItem>
                                 <Divider />
@@ -209,7 +212,6 @@ function DrawerAppBar(props) {
                             <ListItemButton sx={{ textAlign: 'center', display: 'flex', flexDirection: 'column' }}>
                                 <ListItemText onClick={navigateToHome}>Home</ListItemText>
                                 <ListItemText onClick={navigateToAbout}>About</ListItemText>
-                                <ListItemText onClick={navigateToPeddler}>Peddler</ListItemText>
                             </ListItemButton>
                         </ListItem>
                         <Divider />
@@ -274,22 +276,14 @@ function DrawerAppBar(props) {
                                     :
                                     <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
                                         <Button onClick={navigateToHome} sx={{ color: '#fff' }}>Home</Button>
-                                        {/* <Button onClick={navigateToAbout} sx={{ color: '#fff' }}>About</Button> */}
-                                        <Button onClick={navigateToAdminDashboard} sx={{ color: '#fff' }}>Admin Dashboard</Button>
                                         <Button onClick={navigateToValidateUsers} sx={{ color: '#fff' }}>Validate Users</Button>
-                                        <Button onClick={navigateToViewUsers} sx={{ color: '#fff' }}>View Users</Button>
                                         <Button onClick={navigateToRegisterAdmin} sx={{ color: '#fff', paddingLeft: 3 }}>Register Admin</Button>
-                                        <Button onClick={navigateToAdminLogin} sx={{ color: '#fff', paddingRight: 3 }}>Sign-In as Admin</Button>
-                                        <Button onClick={navigateToSignIn} sx={{ color: '#fff' }}>Sign-In as User</Button>
                                     </Box>
                             )
                             :
                             <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
                                 <Button onClick={navigateToHome} sx={{ color: '#fff' }}>Home</Button>
                                 <Button onClick={navigateToAbout} sx={{ color: '#fff' }}>About</Button>
-                                {/* <Button onClick={navigateToAddProduct} sx={{ color: '#fff' }}>Add Product</Button>
-                                <Button onClick={navigateToMyDashboard} sx={{ color: '#fff' }}>My Products</Button> */}
-                                <Button onClick={navigateToPeddler} sx={{ color: '#fff' }}>Peddler</Button>
                                 <Button onClick={navigateToSignIn} sx={{ color: '#fff', paddingLeft: 3 }}>Sign-In</Button>
                                 <Button onClick={navigateToSignUp} sx={{ color: '#fff', paddingRight: 3 }}>Sign-Up</Button>
                                 <Button onClick={navigateToAdminLogin} sx={{ color: '#fff' }}>Sign-In as Admin</Button>
@@ -364,6 +358,8 @@ function DrawerAppBar(props) {
                                             <MenuItem onClick={navigateToAdminProfile}>Profile</MenuItem>
                                             <MenuItem onClick={logout}>Logout of {admin}</MenuItem>
                                             <MenuItem onClick={navigateToAdminLogin}>Sign in to existing Admin account</MenuItem>
+                                            <MenuItem onClick={navigateToSignIn}>Sign in as user</MenuItem>
+                                            <MenuItem onClick={navigateToSignUp}>Sign up</MenuItem>
                                         </Menu>
                                     </div>
                             )

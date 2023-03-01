@@ -31,24 +31,29 @@ function UserDashboard() {
   const [transactionsButton, setTransactionsButton] = useState(false)
 
   useEffect(() => {
-    setUid(JSON.parse(localStorage.getItem('user'))._id)
+    if (JSON.parse(localStorage.getItem('user'))._id){
 
-    const formdata = new FormData();
-    formdata.append('ownerId', JSON.parse(localStorage.getItem('user'))._id);
+      setUid(JSON.parse(localStorage.getItem('user'))._id)
 
-    axios.post('http://localhost:5000/api/products/myproducts', formdata, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then(res => {
-        console.log("This is the response: ", res.data);
-        setAvailableProds(res.data)
-        dispatch(setAvailableProducts(res.data))
+      const formdata = new FormData();
+      formdata.append('ownerId', JSON.parse(localStorage.getItem('user'))._id);
+
+      axios.post('http://localhost:5000/api/products/myproducts', formdata, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
       })
-      .catch(err =>
-        console.log("This is the error", err),
-      );
+        .then(res => {
+          console.log("This is the response: ", res.data);
+          setAvailableProds(res.data)
+          dispatch(setAvailableProducts(res.data))
+        })
+        .catch(err =>
+          console.log("This is the error", err),
+        );
+    }else{
+      navigate('/userlogin')
+    }
   }, [])
 
   const available_products = data.userdashboard.availableproducts;
@@ -152,11 +157,11 @@ function UserDashboard() {
       {
         availableProductsButton ?
           <>
-          <h1>Available Products</h1>
-          <div className='available_products'>
-            
-            {
-              available_products.length > 0 ? available_products.map((item, index) =>
+            <h1>Available Products</h1>
+            <div className='available_products'>
+
+              {
+                available_products.length > 0 ? available_products.map((item, index) =>
                   <AvailableProductCard
                     id={item._id}
                     ownerId={item.ownerId}
@@ -167,9 +172,9 @@ function UserDashboard() {
                     image={item.productImage}
                     link={item.link}
                   />
-              ) : <h4>No products found</h4>
-            }
-          </div>
+                ) : <h4>No products found</h4>
+              }
+            </div>
           </>
           :
           (

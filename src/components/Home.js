@@ -39,12 +39,30 @@ function Home() {
                 dispatch(setEnotes(response.data))
                 setAllProducts(response.data)
                 setLoader(false)
+
+                if (JSON.parse(localStorage.getItem('user'))._id) {
+                    const formdata = new FormData()
+                    formdata.append('userid', JSON.parse(localStorage.getItem('user'))._id);
+
+                    axios.post('http://localhost:5000/api/transactions/userdetails', formdata, {
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    })
+                        .then(res => {
+                            console.log(res.data, '.....................................................')
+                            localStorage.setItem('user', JSON.stringify(res.data))
+                        })
+                        .catch(err =>
+                            console.log("This is the error", err),
+                        );
+                }
             })
             .catch((error) => {
                 console.log(error);
             });
     }, [])
-    console.log("This is data: ", data.products.allProducts)
+    // console.log("This is data: ", data.products.allProducts)
     // setAllProducts(data.products.allProducts)
 
 
@@ -66,7 +84,7 @@ function Home() {
         setSearch(data.products.searchproducts)
         console.log("The search:", search)
     }
-    console.log("The search:", search)
+    // console.log("The search:", search)
 
     const submitSearch = () => {
         console.log("The text search: ", textSearch)

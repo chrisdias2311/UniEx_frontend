@@ -28,29 +28,63 @@ function Profile() {
     const [validity, setValidity] = useState('')
     const [phone, setPhone] = useState('');
 
-    useEffect(() => {
-        const formdata = new FormData()
-        formdata.append('userid', params.id);
+    const [deleteUser, setDeleteUser] = useState(false);
 
-        axios.post('http://localhost:5000/api/transactions/userdetails', formdata, {
+    const navigate = useNavigate
+
+    useEffect(() => {
+        if (!JSON.parse(localStorage.getItem('user'))._id) {
+            navigate('/')
+        } else {
+            const formdata = new FormData()
+            formdata.append('userid', JSON.parse(localStorage.getItem('user'))._id);
+
+            axios.post('http://localhost:5000/api/transactions/userdetails', formdata, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(res => {
+                    console.log("This is opposite persons details", res.data)
+                    // setBuyer(res.data)
+                    setName(res.data.firstname + ' ' + res.data.lastname)
+                    setEmail(res.data.email)
+                    setUserClass(res.data.year + "  " + res.data.dept + "  " + res.data.class)
+                    setPhone(res.data.phone)
+                    setPid(res.data.pid);
+                    setValidity(res.data.validity)
+                })
+                .catch(err =>
+                    console.log("This is the error", err),
+                );
+        }
+    }, [])
+
+    const deleteFunc = () => {
+        setDeleteUser(true);
+    }
+
+    const deleteUserFunc = () => {
+        const formdata = new FormData()
+        formdata.append('id', JSON.parse(localStorage.getItem('user'))._id);
+
+        axios.post('http://localhost:5000/api/user/deleteuser', formdata, {
             headers: {
                 'Content-Type': 'application/json',
             },
         })
             .then(res => {
-                console.log("This is opposite persons details", res.data)
-                // setBuyer(res.data)
-                setName(res.data.firstname + ' ' + res.data.lastname)
-                setEmail(res.data.email)
-                setUserClass(res.data.year + "  " + res.data.dept + "  " + res.data.class)
-                setPhone(res.data.phone)
-                setPid(res.data.pid);
-                setValidity(res.data.validity)
+                localStorage.clear();
+                console.log("This is the response", res.data)
             })
             .catch(err =>
                 console.log("This is the error", err),
             );
-    }, [])
+    }
+
+    const cancelDelete = () => {
+        setDeleteUser(false);
+    }
 
 
     return (
@@ -65,7 +99,7 @@ function Profile() {
                             <Typography gutterBottom variant="h5" component="div">
                                 Details
                             </Typography>
-                            <Typography variant="body2"  color="text.secondary">
+                            <Typography variant="body2" color="text.secondary">
                                 PID : <strong>{pid}</strong>
                             </Typography>
                             <Typography variant="body2" color="text.secondary">
@@ -85,12 +119,35 @@ function Profile() {
                             </Typography>
                         </CardContent>
                     </CardActionArea>
-                    <CardActions>
+                    <CardActions sx={{ justifyContent: 'center' }}>
                         <Button size="small" color="primary">
-                            Update Details 
+                            Update Details
                         </Button>
+                        <Button sx={{ color: 'red' }} onClick={deleteFunc} >
+                            Delete Account
+                        </Button>
+
                     </CardActions>
                 </Card>
+
+                <br></br>
+
+                {
+                    deleteUser ?
+                        <Card sx={{ minWidth: 275 }}>
+                            <CardContent>
+                                <Typography variant="body2">
+                                    Are you sure you want to delete your UniEx account?
+                                </Typography>
+                            </CardContent>
+                            <CardActions sx={{ justifyContent: 'center' }}>
+                                <Button onClick={cancelDelete} size="small">No</Button>
+                                <Button onClick={deleteUserFunc} size="small">Yes</Button>
+                            </CardActions>
+                        </Card>
+                        :
+                        <></>
+                }
             </div>
         </div>
     )

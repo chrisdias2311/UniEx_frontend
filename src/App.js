@@ -20,6 +20,9 @@ import UpdateProduct from './components/UpdateProduct';
 import ViewProduct from './components/ViewProduct';
 import OtpValidation from './components/OtpValidation';
 import Profile from './components/Profile';
+import UpdateUserProfile from './components/UpdateUserProfile';
+import PageNotFound from './components/PageNotFound';
+import AccountUnderReviewPage from './components/AccountUnderReviewPage';
 
 function App() {
   return (
@@ -44,6 +47,14 @@ function App() {
         <Route path='/viewproduct/:id' element={<><ViewProduct/></>}></Route>
         <Route path='/validateotp/:id' element={<><OtpValidation/></>}></Route>
         <Route path='/profile/:id' element={<><Profile/></>}></Route>
+        <Route path='/updateuserprofile' element={<><UpdateUserProfile/></>}></Route>
+        <Route path='*' element={<><PageNotFound/></>}></Route>
+        <Route path='/404page' element={<><PageNotFound/></>}></Route>
+        <Route path='/accountunderreview' element={<><AccountUnderReviewPage/></>}></Route>
+
+        <Route path='/viewusers' element={<><h1>View Users</h1><h1>View Users</h1></>}></Route>
+        <Route path='/viewproducts' element={<><h1>View Users</h1><h1>View Products</h1></>}></Route>
+
 
 
 
@@ -53,7 +64,6 @@ function App() {
         <Route path='/userprofile' element={<><h1>User Profile</h1><h1>User Profile</h1></>}></Route>
         <Route path='/adminprofile' element={<><h1>User Profile</h1><h1>Admin Profile</h1></>}></Route>
         {/* <Route path='/admindashboard' element={<><h1>User Profile</h1><h1>Admin Dashboard</h1><h1>Admin Dashboard</h1></>}></Route> */}
-        <Route path='/viewusers' element={<><h1>View Users</h1><h1>View Users</h1></>}></Route>
       
       </Routes>
       </BrowserRouter>

@@ -7,12 +7,14 @@ import { useNavigate } from 'react-router-dom';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import LinearProgress from '@mui/material/LinearProgress';
+import './AdminLogin.css'
 
 import TextField from '@mui/material/TextField';
 
 function AdminLogin() {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
+  const [loader, setLoader] = useState(false);
 
   const [formData, setFormData] = useState({
     pid: '',
@@ -32,43 +34,60 @@ function AdminLogin() {
 
 
 
-  const createAdmin = (e) => {
-    e.preventDefault();
-    setOpen(!open);
-    console.log("Admin login called");
+  const loginAdmin = (e) => {
 
-    const formdata = new FormData();
-    formdata.append('pid', formData.pid);
-    formdata.append('password', formData.password);
 
-    axios.post('http://localhost:5000/api/admin/login', formdata, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then(res => {
-        setOpen(false);
-        console.log("This is the response: ", res.data);
-        if (res.data !== 'No user found') {
-          localStorage.setItem('admin', JSON.stringify(res.data));
-          navigate('/admindashboard');
-        } else {
-          alert("Invalid Details")
-        }
+    if (formData.pid !== '' && formData.password !== '') {
+      setLoader(true)
+
+      e.preventDefault();
+      setOpen(!open);
+      console.log("Admin login called");
+
+      const formdata = new FormData();
+      formdata.append('pid', formData.pid);
+      formdata.append('password', formData.password);
+
+      axios.post('http://localhost:5000/api/admin/login', formdata, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
       })
-      .catch(err =>
-        console.log("This is the error", err),
-      );
+        .then(res => {
+          setOpen(false);
+          setLoader(false);
+          console.log("This is the response: ", res.data);
+          if (res.data._id) {
+            localStorage.clear()
+            localStorage.setItem('admin', JSON.stringify(res.data));
+            navigate('/invalidusers');
+          } else {
+            alert("Invalid Details")
+          }
+        })
+        .catch(err =>
+          console.log("This is the error", err),
+        );
+    } else {
+      alert("Enter valid details")
+    }
   }
 
 
   return (
-    <div className='adminregister'>
+    <div className='adminlogin'>
       <br></br>
-        <div className='adminRegisterForm'>
-          <br></br>
-          <LinearProgress />
-          <h1>Login as Admin</h1>
+      <br></br>
+      <div className='adminlogin_container'>
+
+        {
+          loader ?
+            <LinearProgress /> : <></>
+        }
+
+        <h1>Login as Admin</h1>
+
+        <div className='al_form_and_button'>
 
           <form>
             <div className='inputField'>
@@ -76,14 +95,15 @@ function AdminLogin() {
             </div>
 
             <div className='inputField'>
-              <TextField fullWidth type="password" className='inputField' id="outlined-basic" value={formData.password} onChange={handlePasswordChange} label="Password" variant="outlined" />
+              <TextField fullWidth type="password" className='inputField' id="outlined-basic" value={formData.password} onChange={handlePasswordChange} label="Password*" variant="outlined" />
             </div>
           </form>
 
-          <Button variant="contained" onClick={createAdmin}>
+          <Button variant="contained" onClick={loginAdmin}>
             Login
           </Button>
         </div>
+      </div>
     </div>
   )
 }

@@ -173,7 +173,7 @@ function Signup() {
 
     const submitSignupForm = (e) => {
         if (formData.pid !== '' && formData.email !== '' && formData.firstName !== '' && formData.lastName !== '' && formData.phone !== '' && formData.year !== '' && formData.dept !== '' && formData.class !== '' && formData.password !== '' && formData.image !== '') {
-
+            setLoader(true)
 
             e.preventDefault();
             console.log("Signup called");
@@ -196,7 +196,7 @@ function Signup() {
                 },
             })
                 .then(res => {
-                    setLoader(true)
+                    
                     localStorage.clear();
                     localStorage.setItem('user', JSON.stringify(res.data));
 

@@ -21,7 +21,7 @@ function InvalidUsers() {
 
     useEffect(() => {
         if (!localStorage.getItem("admin")) {
-            navigate("/");
+            navigate("/404page");
         } else {
             axios
                 .get("http://localhost:5000/api/user/invalidusers")

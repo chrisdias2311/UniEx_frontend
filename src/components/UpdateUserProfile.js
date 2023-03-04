@@ -30,6 +30,8 @@ function UpdateUserProfile() {
     const [Department, setDepartment] = useState('');
     const [Div, setDiv] = useState('')
 
+    const navigate = useNavigate()
+
     const [loader, setLoader] = useState(false);
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(false);
@@ -149,12 +151,9 @@ function UpdateUserProfile() {
         })
             .then(res => {
                 console.log(res)
-                // console.log("This is product details details", res.data)
-                // setName(res.data.name)
-                // setDescription(res.data.description)
-                // setCategory(res.data.category)
-                // setPrice(res.data.price)
-                // setLink(res.data.link)
+                if(res.status===200){
+                    alert('Details updated successfully')
+                }
             })
             .catch(err =>
                 console.log("Frontend error", err),

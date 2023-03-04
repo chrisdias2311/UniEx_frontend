@@ -31,7 +31,7 @@ function UserDashboard() {
   const [transactionsButton, setTransactionsButton] = useState(false)
 
   useEffect(() => {
-    if (JSON.parse(localStorage.getItem('user'))._id){
+    if (JSON.parse(localStorage.getItem('user'))._id) {
 
       setUid(JSON.parse(localStorage.getItem('user'))._id)
 
@@ -51,7 +51,7 @@ function UserDashboard() {
         .catch(err =>
           console.log("This is the error", err),
         );
-    }else{
+    } else {
       navigate('/userlogin')
     }
   }, [])
@@ -70,32 +70,23 @@ function UserDashboard() {
     setBookedProductsButton(true);
     setTransactionsButton(false);
 
+    const formdata = new FormData();
+    formdata.append('id', JSON.parse(localStorage.getItem('user'))._id);
 
-    if (data.userdashboard.bookedproducts.length !== 0) {
-      setBookedProds(data.userdashboard.bookedproducts)
-      console.log("Exists")
-    } else {
-
-      const formdata = new FormData();
-      formdata.append('id', JSON.parse(localStorage.getItem('user'))._id);
-
-      axios.post('http://localhost:5000/api/transactions/soldproducts', formdata, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
+    axios.post('http://localhost:5000/api/transactions/soldproducts', formdata, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(res => {
+        console.log("This is the response: ", res.data);
+        // setProducts(res.data)
+        setBookedProds(res.data)
+        dispatch(setBookedProducts(res.data))
       })
-        .then(res => {
-          console.log("This is the response: ", res.data);
-          // setProducts(res.data)
-          setBookedProds(res.data)
-          dispatch(setBookedProducts(res.data))
-        })
-        .catch(err =>
-          console.log("This is the error", err),
-        );
-
-    }
-
+      .catch(err =>
+        console.log("This is the error", err),
+      );
   }
 
   const getTransactions = () => {
@@ -104,30 +95,23 @@ function UserDashboard() {
     setTransactionsButton(true);
 
 
-    if (data.userdashboard.transactions.length !== 0) {
-      setTrans(data.userdashboard.transactions);
-      console.log("Exists")
-    } else {
+    const formdata = new FormData();
+    formdata.append('id', JSON.parse(localStorage.getItem('user'))._id);
 
-      const formdata = new FormData();
-      formdata.append('id', JSON.parse(localStorage.getItem('user'))._id);
-
-      axios.post('http://localhost:5000/api/transactions/mytransactions', formdata, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
+    axios.post('http://localhost:5000/api/transactions/mytransactions', formdata, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(res => {
+        console.log("This is the response: ", res.data);
+        // setProducts(res.data)
+        setTrans(res.data)
+        dispatch(setTransactions(res.data))
       })
-        .then(res => {
-          console.log("This is the response: ", res.data);
-          // setProducts(res.data)
-          setTrans(res.data)
-          dispatch(setTransactions(res.data))
-        })
-        .catch(err =>
-          console.log("This is the error", err),
-        );
-
-    }
+      .catch(err =>
+        console.log("This is the error", err),
+      );
 
   }
 
@@ -157,7 +141,7 @@ function UserDashboard() {
       {
         availableProductsButton ?
           <>
-            <h1>Available Products</h1>
+            <h1>Your Products</h1>
             <div className='available_products'>
 
               {

@@ -3,10 +3,20 @@ import './AdminRegister.css'
 import { useState } from 'react';
 import axios from 'axios';
 import Button from '@mui/material/Button';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 import TextField from '@mui/material/TextField';
 
 function AdminRegister() {
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if(!localStorage.getItem('admin')){
+            navigate('/404page')
+        }
+    })
+
 
     const [formData, setFormData] = useState({
         pid: '',
@@ -51,9 +61,13 @@ function AdminRegister() {
                 'Content-Type': 'application/json',
             },
         })
-            .then(res =>
-                console.log("This is the response", res.data),
-            )
+            .then(res =>{
+                console.log("This is the response", res.data)
+                if(res.data.email){
+                    alert('Admin Registered successfully!')
+                    navigate('/invalidusers')
+                }
+            })
             .catch(err =>
                 console.log("This is the error", err),
             );

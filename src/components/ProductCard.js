@@ -74,7 +74,10 @@ function ProductCard({ id, ownerId, name, description, category, price, image, l
           },
         })
           .then(res => {
-            navigate('/bookingsuccessful') //improvement needed
+            console.log(res)
+            if(res.status===200){
+              navigate('/bookingsuccessful') 
+            }
             dispatch(bookProd(productId))
           })
           .catch(err =>
@@ -87,13 +90,9 @@ function ProductCard({ id, ownerId, name, description, category, price, image, l
         navigate('/accountunderreview')
       }
 
-
-
     } else {
       navigate('/userlogin')
     }
-
-
 
   }
 

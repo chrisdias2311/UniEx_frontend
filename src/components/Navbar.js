@@ -88,6 +88,7 @@ function DrawerAppBar(props) {
     } 
 
 
+
     const logout = () => {
         setAnchorEl(null);
         localStorage.clear();
@@ -216,6 +217,7 @@ function DrawerAppBar(props) {
                             <ListItemButton sx={{ textAlign: 'center', display: 'flex', flexDirection: 'column' }}>
                                 <ListItemText onClick={navigateToSignIn}>Sign-In</ListItemText>
                                 <ListItemText onClick={navigateToSignUp}>Sign-Up</ListItemText>
+                                <ListItemText onClick={navigateToForgotPassword}>Forgot Password</ListItemText>
                             </ListItemButton>
                         </ListItem>
                         <Divider />
@@ -359,6 +361,7 @@ function DrawerAppBar(props) {
                                             <MenuItem onClick={navigateToAdminLogin}>Sign in to existing Admin account</MenuItem>
                                             <MenuItem onClick={navigateToSignIn}>Sign in as user</MenuItem>
                                             <MenuItem onClick={navigateToSignUp}>Sign up</MenuItem>
+                                            <MenuItem onClick={navigateToForgotPassword}>Forgot Password</MenuItem>
                                         </Menu>
                                     </div>
                             )

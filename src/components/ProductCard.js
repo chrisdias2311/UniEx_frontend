@@ -94,7 +94,7 @@ function ProductCard({ id, ownerId, name, description, category, price, image, l
 
   return (
     <div className="product">
-      <Card sx={{ maxWidth: 345, minWidth: 345 }}>
+      <Card sx={{ maxWidth: 345, minWidth: 345, maxHeight: 400, minHeight:400 }}>
         <CardMedia
           component="img"
           height="200"

@@ -89,6 +89,10 @@ function DrawerAppBar(props) {
     const navigateToForgotPassword = () => {
         navigate('/forgotpassword')
     }
+    const updateProfile = () =>{
+        navigate('/updateuserprofile')
+    } 
+
 
     const logout = () => {
         setAnchorEl(null);
@@ -324,6 +328,7 @@ function DrawerAppBar(props) {
                                             onClose={handleClose}
                                         >
                                             <MenuItem onClick={navigateToUserProfile}>Profile</MenuItem>
+                                            <MenuItem onClick={updateProfile}>Update Profile Details</MenuItem>
                                             <MenuItem onClick={logout}>Logout of {user}</MenuItem>
                                             <MenuItem onClick={navigateToSignIn}>Sign in to existing account</MenuItem>
                                             <MenuItem onClick={navigateToSignUp}>Sign up</MenuItem>

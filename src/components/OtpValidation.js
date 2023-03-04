@@ -76,10 +76,11 @@ function OtpValidation() {
                         <br></br>
                         <br></br>
                         <br></br>
-                        <h1>You need to verify your Email validation</h1>
+                        <h1>We need to verify your Email </h1>
                         <Button onClick={getOtp} sx={{ ':hover': { bgcolor: 'grey', color: 'white' }, bgcolor: 'black' }} variant="contained" >
                             Get OTP
                         </Button>
+                        <br></br> <br></br> <br></br>
                     </div> :
                     <div className='otp_form'>
                         <br></br>

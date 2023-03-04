@@ -215,14 +215,24 @@ function Signup() {
                                 localStorage.clear();
                                 localStorage.setItem('user', JSON.stringify(res.data));
                                 navigate('/validateotp/' + res.data._id)
+                            } else {
+                                setError(true)
+                                alert(res.response.data)
+                                alert("Error occurs here")
+
                             }
                         })
                         .catch(err => {
                             setError(true)
-                            console.log(err)
+                            console.log("This is the error", err.response.data)
+                            alert(err.response.data)
                         });
                 })
-                .catch(err => console.log(err));
+                .catch(err => {
+                    console.log("Errrrr", err)
+                    setError(true)
+                    alert(err.response.data)
+                });
         } else {
             setError(true)
         }
@@ -346,7 +356,7 @@ function Signup() {
 
                     {
                         success ? <Alert severity="success">Logged in Successfully!</Alert> : (
-                            error ? <Alert severity="error">Make sure you've entered the correct details!</Alert> : <></>
+                            error ? <Alert severity="error">Make sure you've entered the correct details, or maybe account already exists</Alert> : <></>
                         )
                     }
 

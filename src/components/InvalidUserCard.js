@@ -56,9 +56,6 @@ function InvalidUserCard({ id, pid, email, firstname, lastname, phone, year, dep
                     title={firstname + " " + lastname}
                 />
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                        Lizard
-                    </Typography>
                     <Typography variant="body2" color="text.secondary">
                         <Typography gutterBottom variant="h6" component="div">
                             Name: {firstname} {lastname}

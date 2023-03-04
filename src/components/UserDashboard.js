@@ -214,23 +214,7 @@ function UserDashboard() {
       }
 
 
-
-      {/* <div className='product_cards'>
-        {
-          availableProds.length > 0 ? availableProds.map((item, index) =>
-            <MyProductCard
-              id={item._id}
-              ownerId={item.ownerId}
-              name={item.name}
-              description={item.description}
-              category={item.category}
-              price={item.price}
-              image={item.productImage}
-              link={item.link}
-            />
-          ) : <h1>No products found</h1>
-        }
-      </div> */}
+      <br></br> <br></br> <br></br>
     </div>
   )
 }

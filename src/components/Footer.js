@@ -41,15 +41,12 @@ function Footer() {
                             </div>
                         </div>
                     </div>
+                    
                 </div>
 
 
                 <div class="footer-content py-5">
                     <div class="row">
-
-
-
-
                         <div class="col-lg-4">
                             <div class="footer-widget">
                                 <div class="footer-heading">
@@ -58,22 +55,15 @@ function Footer() {
                                 <ul>
                                     <li>
                                         <a href="https://powercal.000webhostapp.com/">PowerCal</a>
-                                        <a href="#">Link2</a>
-                                        <a href="#">Link3</a>
+                                        <a href="/">Link3</a>
+                                        <a href="/">Link2</a>
                                     </li>
                                 </ul>
 
                             </div>
                         </div>
-
-
-
-                        
                     </div>
-
                 </div>
-
-
             </div>
 
 
@@ -83,7 +73,7 @@ function Footer() {
                     <div class="row">
                         <div class="col-xl-6 col-lg-6 text-center text-lg-left">
                             <div class="copyright-text">
-                                <p>Copyright &copy; 2023, All Right Reserved <a href="#">UniEx</a></p>
+                                <p>Copyright &copy; 2023, All Right Reserved <a href="/">UniEx</a></p>
 
                             </div>
 
@@ -91,6 +81,7 @@ function Footer() {
                     </div>
                 </div>
             </div>
+
         </div>
     )
 }

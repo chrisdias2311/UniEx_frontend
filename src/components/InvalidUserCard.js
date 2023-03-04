@@ -26,7 +26,6 @@ function InvalidUserCard({ id, pid, email, firstname, lastname, phone, year, dep
         })
             .then(res => {
                 alert("User Registered Successfully")
-                console.log("Successful", res)
                 dispatch(registerUser(userId))
             })
             .catch(err => console.log(err));
@@ -38,11 +37,9 @@ function InvalidUserCard({ id, pid, email, firstname, lastname, phone, year, dep
         })
             .then(res => {
                 alert("User Registration Declined")
-                console.log("Successful", res)
                 dispatch(declineUser(userId))
             })
             .catch(err => console.log(err));
-        // console.log(userId)
         // dispatch(declineUser(userId))
     }
 

@@ -24,14 +24,12 @@ function Home() {
     const [search, setSearch] = useState([]);
     const [textSearch, setTextSearch] = useState('');
 
-    console.log("This isthe state: ", data)
 
     useEffect(() => {
         axios
             .get("http://localhost:5000/api/products/allproducts")
             .then((response) => {
                 // dispatch(setInvalidUsers(response.data));
-                console.log("These are the prods", response.data)
                 dispatch(setProducts(response.data))
                 dispatch(setStationery(response.data))
                 dispatch(setNotes(response.data))
@@ -50,7 +48,6 @@ function Home() {
                         },
                     })
                         .then(res => {
-                            console.log(res.data, '.....................................................')
                             localStorage.setItem('user', JSON.stringify(res.data))
                         })
                         .catch(err =>
@@ -80,12 +77,9 @@ function Home() {
             dispatch(searchEnotes(e.target.value))
         }
         setSearch(data.products.searchproducts)
-        console.log("The search:", search)
     }
-    // console.log("The search:", search)
 
     const submitSearch = () => {
-        console.log("The text search: ", textSearch)
         if (textSearch !== '') {
             setAllProducts(search)
         }

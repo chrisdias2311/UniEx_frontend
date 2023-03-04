@@ -17,7 +17,6 @@ function BookedProductsCard({ transactionId, buyerName, transactionType, product
 
 
     const view = (id)=> {
-        console.log("Id:", id)
         navigate('/dashboard/bookedproductdetails/'+id)
     }
 

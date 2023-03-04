@@ -51,7 +51,7 @@ function ProductCard({ id, ownerId, name, description, category, price, image, l
         .catch(err =>
           console.log("This is the error", err),
         );
-      console.log(formdata);
+        
     }
   }
 
@@ -60,7 +60,6 @@ function ProductCard({ id, ownerId, name, description, category, price, image, l
     if (localStorage.getItem('user')) {
 
       if (JSON.parse(localStorage.getItem('user')).validity === 'Yes') {
-        console.log("Product id from card", productId)
         const formdata = new FormData();
         formdata.append('id', productId);
         formdata.append('productName', productName);
@@ -74,7 +73,6 @@ function ProductCard({ id, ownerId, name, description, category, price, image, l
           },
         })
           .then(res => {
-            console.log(res)
             if(res.status===200){
               navigate('/bookingsuccessful') 
             }
@@ -83,8 +81,6 @@ function ProductCard({ id, ownerId, name, description, category, price, image, l
           .catch(err =>
             console.log("This is the error", err),
           );
-
-        console.log(formdata);
 
       } else {
         navigate('/accountunderreview')

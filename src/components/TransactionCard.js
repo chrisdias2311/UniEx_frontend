@@ -17,7 +17,6 @@ function TransactionCard({ transactionId, sellerName, productName, transactionTy
 
 
     const view = (id)=> {
-        console.log("Id:", id)
         navigate('/dashboard/transactiondetails/'+id)
     }
 

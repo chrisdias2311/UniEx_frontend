@@ -31,16 +31,9 @@ function ForgotPassword() {
     }
 
     useEffect(() => {
-        // const id = JSON.parse(localStorage.getItem('user')).email
-        // axios.get(`http://localhost:5000/api/user/generateotp/${id}`, {
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        // })
-        //     .then(res => {
-        //         console.log("Generate OTP called")
-        //     })
-        //     .catch(err => console.log(err));
+        if(!localStorage.getItem('user')){
+            navigate('/404page')
+        }
     }, []);
 
     const getOtp = () => {
@@ -81,20 +74,20 @@ function ForgotPassword() {
 
     const changePassword = () => {
 
-        // axios.get(`http://localhost:5000/api/user/change_pass/${email}/${newPass}`, {
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        // })
-        //     .then(res => {
-        //         console.log(res)
-        //         if (res.status === 200) {
-        //             alert('Password changes successfully!')
-        //             navigate('/')
+        axios.get(`http://localhost:5000/api/user/change_pass/${email}/${newPass}`, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(res => {
+                console.log(res)
+                if (res.status === 200) {
+                    alert('Password changes successfully!')
+                    navigate('/')
 
-        //         }
-        //     })
-        //     .catch(err => console.log(err));    
+                }
+            })
+            .catch(err => console.log(err));    
     }
 
 
@@ -140,11 +133,6 @@ function ForgotPassword() {
                                     </>
 
                             }
-
-
-
-
-
                         </div>
                 }
             </div>

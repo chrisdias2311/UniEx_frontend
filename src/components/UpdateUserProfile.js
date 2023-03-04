@@ -150,7 +150,6 @@ function UpdateUserProfile() {
             },
         })
             .then(res => {
-                console.log(res)
                 if(res.status===200){
                     alert('Details updated successfully')
                 }

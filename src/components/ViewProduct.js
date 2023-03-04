@@ -29,25 +29,6 @@ function ViewProduct() {
       .then(res => {
         console.log("This is the res", res.data)
 
-        // if (res.data.category === 'E-notes and Study Material') {
-
-        //   formdata.append('userid', res.data.ownerId);
-
-        //   axios.post('http://localhost:5000/api/transactions/userdetails', formdata, {
-        //     headers: {
-        //       'Content-Type': 'application/json',
-        //     },
-        //   })
-        //     .then(res => {
-        //       console.log("This is the res", res.data)
-
-        //     })
-        //     .catch(err =>
-        //       console.log("This is the error", err),
-        //     );
-
-        // }
-
       })
       .catch(err =>
         console.log("This is the error", err),

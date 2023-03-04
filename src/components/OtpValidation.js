@@ -20,18 +20,6 @@ function OtpValidation() {
         setOtp(event.target.value)
     }
 
-    useEffect(() => {
-        // const id = JSON.parse(localStorage.getItem('user')).email
-        // axios.get(`http://localhost:5000/api/user/generateotp/${id}`, {
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        // })
-        //     .then(res => {
-        //         console.log("Generate OTP called")
-        //     })
-        //     .catch(err => console.log(err));
-    }, []);
 
     const getOtp = () => {
         const id = JSON.parse(localStorage.getItem('user')).email
@@ -42,7 +30,6 @@ function OtpValidation() {
         })
             .then(res => {
                 setOtpPending(false)
-                console.log("Generate OTP called")
             })
             .catch(err => console.log(err));
     }
@@ -57,10 +44,7 @@ function OtpValidation() {
             },
         })
             .then(res => {
-                console.log(res)
                 navigate('/')
-                // console.log(res.data._id)
-                // navigate('/validateotp/' + res.data._id)
             })
             .catch(err => console.log(err));
     }

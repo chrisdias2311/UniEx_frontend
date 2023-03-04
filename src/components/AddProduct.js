@@ -72,10 +72,8 @@ function AddProduct() {
     }
 
     const handleImageChange = (event) => {
-        console.log("Handle Image change called")
         setFormData({ ...formData, image: event.target.files[0] });
         imageData.append('file', formData.image);
-        console.log(formData.image);
         setImageUpload(true);
     }
 
@@ -86,8 +84,6 @@ function AddProduct() {
             setLoader(true)
 
             e.preventDefault();
-            console.log("Add Product Called called");
-            console.log(JSON.parse(localStorage.getItem('user'))._id)
 
             const formdata = new FormData();
             formdata.append('ownerId', JSON.parse(localStorage.getItem('user'))._id);
@@ -97,7 +93,6 @@ function AddProduct() {
             formdata.append('price', formData.price);
             formdata.append('link', formData.link);
             formdata.append('file', formData.image);
-            console.log("Formdata", formdata)
 
             axios.post('http://localhost:5000/api/products/addproduct', formdata, {
                 headers: {
@@ -113,7 +108,6 @@ function AddProduct() {
                     setFormData({ ...formData, link: ''});
                     setFormData({ ...formData, image: ''});
 
-                    console.log(res)
                     setSuccess(true)
                     setTimeout(() => {
                         setSuccess(false)
@@ -123,7 +117,6 @@ function AddProduct() {
                 })
                 .catch(err => {
                     setError(true)
-                    console.log(err)
                 });
         } else {
             setError(true)

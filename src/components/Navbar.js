@@ -45,18 +45,12 @@ function DrawerAppBar(props) {
     useEffect(() => {
         if (localStorage.getItem('admin')) {
             setAdmin(JSON.parse(localStorage.getItem('admin')).firstname)
-            console.log("--------------------------------------------------The admin", admin);
         } else if (localStorage.getItem('user')) {
             setUser(JSON.parse(localStorage.getItem('user')).firstname)
         }
     }, [])
 
-    // if (localStorage.getItem('admin')) {
-    //     setAdmin(true)
-    //     console.log("--------------------------------------------------The admin", admin);
-    // } else if (localStorage.getItem('user')) {
-    //     setUser(true)
-    // }
+   
 
     //Navigations
     const navigateToHome = () => {

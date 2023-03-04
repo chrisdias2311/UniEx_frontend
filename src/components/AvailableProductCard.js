@@ -18,7 +18,6 @@ function AvailableProductCard({ id, ownerId, name, description, category, price,
   const navigate = useNavigate();
 
   const updateProduct = (id) => {
-    console.log(id)
     navigate('/dashboard/updateproduct/'+id)
   }
 
@@ -33,7 +32,6 @@ function AvailableProductCard({ id, ownerId, name, description, category, price,
             },
         })
             .then(res => {
-              console.log("This is product details details", res.data)
               dispatch(deleteProduct(id))
             })
             .catch(err =>

@@ -17,7 +17,6 @@ import Typography from '@mui/material/Typography';
 function BookedProductDetails() {
     const params = useParams();
     const navigate = useNavigate();
-    console.log("From params ", params.id)
 
     // const [productDetails, setProductDetails] = useState()
     // const [buyer, setBuyer] = useState()
@@ -43,7 +42,6 @@ function BookedProductDetails() {
             },
         })
             .then(res => {
-                console.log("This is the res", res.data)
                 if (res.data.soldBy === JSON.parse(localStorage.getItem('user'))._id) {
                     formdata.append('userid', res.data.broughtBy);
                     formdata.append('productid', res.data.productId);
@@ -54,8 +52,6 @@ function BookedProductDetails() {
                         },
                     })
                         .then(res => {
-                            console.log("This is opposite persons details", res.data)
-                            // setBuyer(res.data)
                             setBuyerName(res.data.firstname + ' ' + res.data.lastname)
                             setBuyerEmail(res.data.email)
                             setBuyerClass(res.data.year + "  " + res.data.dept + "  " + res.data.class)
@@ -73,21 +69,14 @@ function BookedProductDetails() {
                         },
                     })
                         .then(res => {
-                            console.log("This is product details details", res.data)
                             setProductName(res.data.name)
                             setProductDescription(res.data.description)
                             setProductCategory(res.data.category)
                             setProductPrice(res.data.price)
-                            // setProductDetails(res.data);
-
-                            // console.log()
                         })
                         .catch(err =>
                             console.log("This is the error", err),
                         );
-
-
-
 
                 } else {
                     navigate('/')

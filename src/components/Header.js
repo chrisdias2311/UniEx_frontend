@@ -17,38 +17,7 @@ import Select from '@mui/material/Select';
 
 
 
-// import { makeStyles } from "@material-ui/core/styles";
-// import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-// const Theme = {
-//     palette: {
-//         primary: {
-//             contrastText: "#FFFFFF",
-//             dark: "#FFFFFF",
-//             main: "#FFFFFF",
-//             light: "#FFFFFF"
-//         }
-//     },
-//     overrides: {
-//         MuiOutlinedInput: {
-//             root: {
-//                 position: "relative",
-//                 "& $notchedOutline": {
-//                     borderColor: "#FFFFFF"
-//                 },
-//                 "&:hover:not($disabled):not($focused):not($error) $notchedOutline": {
-//                     borderColor: "#FFFFFF",
-//                     "@media (hover: none)": {
-//                         borderColor: "#FFFFFF"
-//                     }
-//                 },
-//                 "&$focused $notchedOutline": {
-//                     borderColor: "#FFFFFF",
-//                     borderWidth: 1
-//                 }
-//             }
-//         }
-//     }
-// };
+
 function Header() {
     const [search, setSearch] = useState([]);
     const [textSearch, setTextSearch] = useState('');
@@ -68,30 +37,6 @@ function Header() {
 
     console.log("Name", data.products.searchproducts.name)
 
-    // const ColorInput = styled(TextField)(({ theme }) => ({
-    //     // color: theme.palette.getContrastText(grey[900]),
-    //     borderColor: theme.palette.getContrastText(grey[900]),
-    //     input: {
-    //         color: "white"
-    //       },
-    //       palette: {
-    //         primary: {
-    //           contrastText: "#FFFFFF",
-    //           dark: "#FFFFFF",
-    //           main: "#FFFFFF",
-    //           light: "#FFFFFF"
-    //         }
-    //       },
-    //     // backgroundColor: grey[900],
-    //     '&:hover': {
-    //         backgroundColor: grey[400],
-    //     },
-    // }));
-
-
-
-    // const theme = createMuiTheme(Theme);
-    // const classes = useStyles();
 
 
     return (
@@ -122,29 +67,6 @@ function Header() {
 
             <div className='nav_right'>
                 <div className="header_search">
-                    {/* <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={textSearch}
-                        label="Category"
-                        // onChange={handleCategoryChange}
-                    >
-                        {search.map((item) =>
-
-                            (<MenuItem value={item.name} key={item._id}>{item.name}</MenuItem>)
-
-                        )
-                        }
-
-                    </Select> */}
-                    {/* <input className="header_searchInput" type="text" onChange={handleSearch}></input> */}
-                    {/* <ColorInput id="outlined-basic" label="Outlined" variant="outlined" /> */}
-                    {/* <TextField
-                        label="Enter your name"
-                        InputProps={{
-                            style: { borderColor: 'white' },
-                        }}
-                        /> */}
                     <SearchIcon className="header_searchIcon" />
                 </div>
             </div>

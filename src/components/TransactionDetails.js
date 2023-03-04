@@ -15,10 +15,7 @@ import Typography from '@mui/material/Typography';
 function TransactionDetails() {
     const params = useParams();
     const navigate = useNavigate();
-    console.log("From params ", params.id)
 
-    // const [productDetails, setProductDetails] = useState()
-    // const [buyer, setBuyer] = useState()
     const [sellerName,  setSellerName] = React.useState('');
     const [sellerEmail, setSellerEmail] = React.useState('');
     const [sellerClass, setSellerClass] = React.useState('');
@@ -40,7 +37,6 @@ function TransactionDetails() {
             },
         })
             .then(res => {
-                console.log("This is the res", res.data)
                 if (res.data.broughtBy === JSON.parse(localStorage.getItem('user'))._id) {
                     formdata.append('userid', res.data.soldBy);
                     formdata.append('productid', res.data.productId);
@@ -51,8 +47,6 @@ function TransactionDetails() {
                         },
                     })
                         .then(res => {
-                            console.log("This is opposite persons details", res.data)
-                            // setBuyer(res.data)
                             setSellerName(res.data.firstname + ' ' + res.data.lastname)
                             setSellerEmail(res.data.email)
                             setSellerClass(res.data.year + "  " + res.data.dept + "  " + res.data.class)
@@ -70,21 +64,14 @@ function TransactionDetails() {
                         },
                     })
                         .then(res => {
-                            console.log("This is product details details", res.data)
                             setProductName(res.data.name)
                             setProductDescription(res.data.description)
                             setProductCategory(res.data.category)
                             setProductPrice(res.data.price)
-                            // setProductDetails(res.data);
-
-                            // console.log()
                         })
                         .catch(err =>
                             console.log("This is the error", err),
                         );
-
-
-
 
                 } else {
                     navigate('/')

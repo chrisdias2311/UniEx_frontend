@@ -44,7 +44,6 @@ function UserDashboard() {
         },
       })
         .then(res => {
-          console.log("This is the response: ", res.data);
           setAvailableProds(res.data)
           dispatch(setAvailableProducts(res.data))
         })
@@ -79,8 +78,6 @@ function UserDashboard() {
       },
     })
       .then(res => {
-        console.log("This is the response: ", res.data);
-        // setProducts(res.data)
         setBookedProds(res.data)
         dispatch(setBookedProducts(res.data))
       })
@@ -104,8 +101,6 @@ function UserDashboard() {
       },
     })
       .then(res => {
-        console.log("This is the response: ", res.data);
-        // setProducts(res.data)
         setTrans(res.data)
         dispatch(setTransactions(res.data))
       })

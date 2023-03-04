@@ -47,7 +47,6 @@ function AdminRegister() {
 
     const createAdmin = (e) => {
         e.preventDefault();
-        console.log("Admin register called");
 
         const formdata = new FormData();
         formdata.append('pid', formData.pid);
@@ -62,7 +61,6 @@ function AdminRegister() {
             },
         })
             .then(res =>{
-                console.log("This is the response", res.data)
                 if(res.data.email){
                     alert('Admin Registered successfully!')
                     navigate('/invalidusers')

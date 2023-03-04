@@ -42,7 +42,6 @@ function AdminLogin() {
 
       e.preventDefault();
       setOpen(!open);
-      console.log("Admin login called");
 
       const formdata = new FormData();
       formdata.append('pid', formData.pid);
@@ -56,7 +55,6 @@ function AdminLogin() {
         .then(res => {
           setOpen(false);
           setLoader(false);
-          console.log("This is the response: ", res.data);
           if (res.data._id) {
             localStorage.clear()
             localStorage.setItem('admin', JSON.stringify(res.data));
@@ -66,7 +64,7 @@ function AdminLogin() {
           }
         })
         .catch(err =>
-          console.log("This is the error", err),
+          console.log("This is the error", err)
         );
     } else {
       alert("Enter valid details")

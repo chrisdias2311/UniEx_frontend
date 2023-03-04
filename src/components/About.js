@@ -4,7 +4,7 @@ import Chris from '../Chris.jpg'
 import Jason from '../Jason.jpg'
 import Stalen from '../Stalen.jpg'
 import Avatar from '@mui/material/Avatar';
-import Vighnesh from'../Vighnesh.jpg'
+import Vighnesh from '../Vighnesh.jpg'
 import Mustafiz from '../Mustafiz.jpg'
 import Typography from '@mui/material/Typography';
 
@@ -15,13 +15,15 @@ function About() {
             <h1>About</h1>
 
             <div className='info'>
-                The lone lamp post of the one-street town flickered, not quite dead but definitely on its way out. Suitcase by her side, she paid no heed to the light, the street or the town. A car was coming down the street and with her arm outstretched and thumb in the air, she had a plan.
-                He stepped away from the mic. This was the best take he had done so far, but something seemed missing. Then it struck him all at once. Visuals ran in front of his eyes and music rang in his ears. His eager fingers went to work in an attempt to capture his thoughts hoping the results would produce something that was at least half their glory.
-                I'm so confused by your ridiculous meltdown that I must insist on some sort of explanation for your behavior towards me. It just doesn't make any sense. There's no way that I deserved the treatment you gave me without an explanation or an apology for how out of line you have been.
+                Uniex is an innovative marketplace designed exclusively for university students to exchange items and services within their campus community. This platform was created to facilitate the exchange of goods and services between students, allowing them to easily trade and share items without the need for money.
 
-                The lone lamp post of the one-street town flickered, not quite dead but definitely on its way out. Suitcase by her side, she paid no heed to the light, the street or the town. A car was coming down the street and with her arm outstretched and thumb in the air, she had a plan.
-                He stepped away from the mic. This was the best take he had done so far, but something seemed missing. Then it struck him all at once. Visuals ran in front of his eyes and music rang in his ears. His eager fingers went to work in an attempt to capture his thoughts hoping the results would produce something that was at least half their glory.
-                I'm so confused by your ridiculous meltdown that I must insist on some sort of explanation for your behavior towards me. It just doesn't make any sense. There's no way that I deserved the treatment you gave me without an explanation or an apology for how out of line you have been.
+                The UniEx platform is user-friendly and intuitive, allowing students to create listings for items they want to exchange, view listings from other students, and connect with potential exchange partners. UniEx enables students to exchange a wide range of items, including textbooks, electronics, furniture, and even services like tutoring or language exchange.
+
+                UniEx aims to create a more sustainable and cost-effective way for students to obtain the items they need while also reducing waste and promoting community engagement. By providing a platform for students to exchange items, UniEx contributes to the development of a circular economy within university campuses, fostering a sense of community and sustainability.
+
+                UniEx is committed to ensuring the safety and security of its users. The platform incorporates measures to protect users from fraud, spam, and other malicious activities, ensuring that exchanges are conducted in a safe and trustworthy manner.
+
+                In summary, UniEx is a valuable platform that empowers university students to exchange items and services in a safe, sustainable, and cost-effective manner. With its user-friendly interface and commitment to user safety, UniEx is a valuable addition to any university community, fostering community engagement and promoting sustainability.
             </div>
 
             <div className='members'>
@@ -32,13 +34,13 @@ function About() {
                         sx={{ width: 100, height: 100 }}
                     />
                     <div className='member_info'>
-                        <Typography sx={{textAlign:'left'}} gutterBottom variant="h5" component="div">
+                        <Typography sx={{ textAlign: 'left' }} gutterBottom variant="h5" component="div">
                             Chris Dias
                         </Typography>
-                        <Typography sx={{textAlign:'left'}} variant="body2">
+                        <Typography sx={{ textAlign: 'left' }} variant="body2">
                             Co-founder and Full Stack Engineer
                         </Typography>
-                        <Typography sx={{textAlign:'left'}} variant="body1">
+                        <Typography sx={{ textAlign: 'left' }} variant="body1">
                             -UniEx
                         </Typography>
                     </div>
@@ -50,13 +52,13 @@ function About() {
                         sx={{ width: 100, height: 100 }}
                     />
                     <div className='member_info'>
-                        <Typography sx={{textAlign:'left'}} gutterBottom variant="h5" component="div">
+                        <Typography sx={{ textAlign: 'left' }} gutterBottom variant="h5" component="div">
                             Jason Sampy
                         </Typography>
-                        <Typography sx={{textAlign:'left'}} variant="body2">
+                        <Typography sx={{ textAlign: 'left' }} variant="body2">
                             Co-founder and Software Developer
                         </Typography>
-                        <Typography sx={{textAlign:'left'}} variant="body1">
+                        <Typography sx={{ textAlign: 'left' }} variant="body1">
                             -UniEx
                         </Typography>
                     </div>
@@ -68,13 +70,13 @@ function About() {
                         sx={{ width: 100, height: 100 }}
                     />
                     <div className='member_info'>
-                        <Typography sx={{textAlign:'left'}} gutterBottom variant="h5" component="div">
+                        <Typography sx={{ textAlign: 'left' }} gutterBottom variant="h5" component="div">
                             Stalen Ferreira
                         </Typography>
-                        <Typography sx={{textAlign:'left'}} variant="body2">
+                        <Typography sx={{ textAlign: 'left' }} variant="body2">
                             Co-founder and Marketing Lead
                         </Typography>
-                        <Typography sx={{textAlign:'left'}} variant="body1">
+                        <Typography sx={{ textAlign: 'left' }} variant="body1">
                             -UniEx
                         </Typography>
                     </div>
@@ -87,13 +89,13 @@ function About() {
                         sx={{ width: 100, height: 100 }}
                     />
                     <div className='member_info'>
-                        <Typography sx={{textAlign:'left'}} gutterBottom variant="h5" component="div">
+                        <Typography sx={{ textAlign: 'left' }} gutterBottom variant="h5" component="div">
                             Mustafiz Ansari
                         </Typography>
-                        <Typography sx={{textAlign:'left'}} variant="body2">
+                        <Typography sx={{ textAlign: 'left' }} variant="body2">
                             Software Developer
                         </Typography>
-                        <Typography sx={{textAlign:'left'}} variant="body1">
+                        <Typography sx={{ textAlign: 'left' }} variant="body1">
                             -UniEx
                         </Typography>
                     </div>
@@ -106,13 +108,13 @@ function About() {
                         sx={{ width: 100, height: 100 }}
                     />
                     <div className='member_info'>
-                        <Typography sx={{textAlign:'left'}} gutterBottom variant="h5" component="div">
+                        <Typography sx={{ textAlign: 'left' }} gutterBottom variant="h5" component="div">
                             Vighnesh Mestry
                         </Typography>
-                        <Typography sx={{textAlign:'left'}} variant="body2">
+                        <Typography sx={{ textAlign: 'left' }} variant="body2">
                             Software Developer
                         </Typography>
-                        <Typography sx={{textAlign:'left'}} variant="body1">
+                        <Typography sx={{ textAlign: 'left' }} variant="body1">
                             -UniEx
                         </Typography>
                     </div>

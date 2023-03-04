@@ -38,7 +38,6 @@ function UserLogin() {
 
     const submitSignupForm = (e) => {
         e.preventDefault();
-        console.log("Signup called", formData);
 
 
 
@@ -58,7 +57,6 @@ function UserLogin() {
             })
                 .then(res => {
                     setLoader(false);
-                    console.log(res)
 
                     if (res.data.email) {
                         setSuccess(true)

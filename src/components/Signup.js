@@ -176,7 +176,6 @@ function Signup() {
             setLoader(true)
 
             e.preventDefault();
-            console.log("Signup called");
 
             const formdata = new FormData();
             formdata.append('pid', formData.pid);
@@ -224,12 +223,10 @@ function Signup() {
                         })
                         .catch(err => {
                             setError(true)
-                            console.log("This is the error", err.response.data)
                             alert(err.response.data)
                         });
                 })
                 .catch(err => {
-                    console.log("Errrrr", err)
                     setError(true)
                     alert(err.response.data)
                 });

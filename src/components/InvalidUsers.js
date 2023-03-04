@@ -35,7 +35,6 @@ function InvalidUsers() {
     }, []);
 
 
-    console.log("The Invalidusers: ", data.users.validateUsers);
     const users = data.users.validateUsers;
 
     return (

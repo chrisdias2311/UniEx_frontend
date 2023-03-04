@@ -57,7 +57,6 @@ function UpdateProduct() {
             },
         })
             .then(res => {
-                console.log("This is product details details", res.data)
                 setName(res.data.name)
                 setDescription(res.data.description)
                 setCategory(res.data.category)
@@ -112,7 +111,6 @@ function UpdateProduct() {
             })
                 .then(res => {
                     setLoader(false)
-                    console.log(res)
                     setSuccess(true)
                     setTimeout(() => {
                         setSuccess(false)
@@ -121,7 +119,6 @@ function UpdateProduct() {
                 })
                 .catch(err => {
                     setError(true)
-                    console.log(err)
                     console.log(err)
                 });
         } else {

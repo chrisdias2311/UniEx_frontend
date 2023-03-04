@@ -53,8 +53,6 @@ function Profile() {
                 },
             })
                 .then(res => {
-                    console.log("This is opposite persons details", res.data)
-                    // setBuyer(res.data)
                     setName(res.data.firstname + ' ' + res.data.lastname)
                     setEmail(res.data.email)
                     setUserClass(res.data.year + "  " + res.data.dept + "  " + res.data.class)
@@ -83,7 +81,6 @@ function Profile() {
         })
             .then(res => {
                 localStorage.clear();
-                console.log("This is the response", res.data)
                 alert("Your Account has been successfully deleted")
                 navigate('/')
             })
@@ -102,14 +99,8 @@ function Profile() {
         })
             .then(res => {
                 if(res.data.modifiedCount===1){
-                    console.log(res)
                     deleteUserFunc();
                 }
-                
-                // deleteUserFunc();
-                // navigate('/')
-                // console.log(res.data._id)
-                // navigate('/validateotp/' + res.data._id)
             })
             .catch(err => console.log(err));
     }
@@ -124,7 +115,6 @@ function Profile() {
         })
             .then(res => {
                 setOtpPending(true)
-                console.log("Generate OTP called")
             })
             .catch(err => console.log(err));
     }

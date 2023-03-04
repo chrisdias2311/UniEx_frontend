@@ -150,7 +150,7 @@ function TransactionDetails() {
                     </Typography>
 
                     <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                        Price: <strong>{productPrice}</strong>
+                        Price: ₹<strong>{productPrice}</strong>
                     </Typography>
                 </CardContent>
             </Card>

@@ -62,8 +62,6 @@ function Home() {
                 console.log(error);
             });
     }, [])
-    // console.log("This is data: ", data.products.allProducts)
-    // setAllProducts(data.products.allProducts)
 
 
 
@@ -182,7 +180,7 @@ function Home() {
                 </div>
             </div>
             {
-                loader ? <LinearProgress /> : <></>
+                loader ? <LinearProgress color='success' /> : <></>
             }
             <br></br>
             <br></br>

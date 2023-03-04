@@ -49,9 +49,54 @@ function InvalidUserCard({ id, pid, email, firstname, lastname, phone, year, dep
 
     return (
         <div className='maincard'>
-            <Card sx={{  display: 'flex', maxWidth:600,  flexWrap:'wrap', justifyContent:'center'}}>
+            <Card sx={{ maxWidth: 300, minWidth: 300 }}>
                 <CardMedia
-                    sx={{ height: 200, maxWidth:200 }}
+                    sx={{ height: 200 }}
+                    image={"http://" + idimage}
+                    title={firstname + " " + lastname}
+                />
+                <CardContent>
+                    <Typography gutterBottom variant="h5" component="div">
+                        Lizard
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                        <Typography gutterBottom variant="h6" component="div">
+                            Name: {firstname} {lastname}
+                        </Typography>
+                        <Typography variant="body" color="text.secondary">
+                            <strong>{email}</strong>
+                        </Typography>
+                        <br></br>
+                        <Typography variant="body" color="text.secondary">
+                            PID: <strong>{pid}</strong>
+                        </Typography>
+                        <br></br>
+                        <Typography variant="body" color="text.secondary">
+                            Class: <strong>{year} {dept} {div}</strong>
+                        </Typography>
+                        <br></br>
+                        <Typography variant="body" color="text.secondary">
+                            Phone: <strong>{phone}</strong>
+                        </Typography>
+                        {
+                            (verified === 'yes') ? <h3 className='verified'>Verified</h3> : <h3 className='unverified'>Unverified</h3>
+                        }
+                    </Typography>
+                </CardContent>
+                <CardActions>
+                    <Button className='controlButton' sx={{ margin: 1 }} variant="contained" onClick={() => register(id)}>Register</Button>
+                    <Button className='controlButtons' sx={{ margin: 1 }} variant="contained" color='error' onClick={() => decline(id)}>Decline</Button>
+                    <a className='link_tag' href={"http://" + idimage} target="_blank" rel="noreferrer"> View </a>
+                </CardActions>
+            </Card>
+
+
+
+
+
+            {/* <Card sx={{ display: 'flex', maxWidth: 600, flexWrap: 'wrap', justifyContent: 'center' }}>
+                <CardMedia
+                    sx={{ height: 200, maxWidth: 200 }}
                     component="img"
                     image={"http://" + idimage}
                     alt="Image"
@@ -84,7 +129,7 @@ function InvalidUserCard({ id, pid, email, firstname, lastname, phone, year, dep
                     <Button className='controlButtons' sx={{ margin: 1 }} variant="contained" color='error' onClick={() => decline(id)}>Decline</Button>
                     <a className='link_tag' href={"http://" + idimage} target="_blank" rel="noreferrer"> View </a>
                 </CardActions>
-            </Card>
+            </Card> */}
         </div>
 
 

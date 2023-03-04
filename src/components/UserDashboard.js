@@ -147,7 +147,7 @@ function UserDashboard() {
     <div>
       <h1>My Products</h1>
       <div className='buttonsPanel'>
-        <ColorButton sx={{ maxWidth: 300, minWidth: 300, margin: 2, height: 45 }} onClick={getAvailableProducts} variant="contained">Available Products</ColorButton>     {/*   Which of my products are unsold. can update/Delete them  */}
+        <ColorButton sx={{ maxWidth: 300, minWidth: 300, margin: 2, height: 45 }} onClick={getAvailableProducts} variant="contained">Your Products</ColorButton>     {/*   Which of my products are unsold. can update/Delete them  */}
         <ColorButton sx={{ maxWidth: 300, minWidth: 300, margin: 2, height: 45 }} onClick={getBookedProducts} variant="contained">Booked Products</ColorButton>       {/*   which of my products wese sold? I have bought  */}
         <ColorButton sx={{ maxWidth: 300, minWidth: 300, margin: 2, height: 45 }} onClick={getTransactions} variant="contained">My Transactions</ColorButton>       {/*   What I have bought    */}
       </div>
@@ -180,7 +180,7 @@ function UserDashboard() {
           (
             bookedProductsButton ?
               <div>
-                <h1>Boooked Products</h1>
+                <h1>Booked Products</h1>
                 {
                   bookedProds.length > 0 ? bookedProds.map((item, index) =>
                     <BookedProductsCard

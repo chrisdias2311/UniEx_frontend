@@ -343,7 +343,6 @@ function Signup() {
                         }
                     </form>
 
-                    <p>by signing-up you agree to UniEx conditions of Use and sale. Please see our Privacy Notice</p>
 
                     {
                         success ? <Alert severity="success">Logged in Successfully!</Alert> : (

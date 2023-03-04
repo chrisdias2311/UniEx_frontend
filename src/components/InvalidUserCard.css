@@ -1,5 +1,11 @@
 .unverified{
-    color: red;
+    color: white;
+    background-color: red;
+    margin: 0;
+    /* justify-content: flex-start; */
+}
+.verified{
+    color: blue;
     margin: 0;
     /* justify-content: flex-start; */
 }

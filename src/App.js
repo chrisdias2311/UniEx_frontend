@@ -23,6 +23,10 @@ import Profile from './components/Profile';
 import UpdateUserProfile from './components/UpdateUserProfile';
 import PageNotFound from './components/PageNotFound';
 import AccountUnderReviewPage from './components/AccountUnderReviewPage';
+import ForgotPassword from './components/ForgotPassword';
+import BookingSuccessful from './components/BookingSuccessful';
+import About from './components/About';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -32,6 +36,7 @@ function App() {
       <Navbar/>
       <Routes>
         <Route path='/' element={<><Home/></>}></Route>
+        <Route path='/about' element={<><About/></>}></Route>
         <Route path='/signup' element={<><Signup/></>}></Route>
         <Route path='/userlogin' element={<><UserLogin/></>}></Route>
         <Route path='/adminregister' element={<><AdminRegister/></>}></Route>
@@ -51,21 +56,14 @@ function App() {
         <Route path='*' element={<><PageNotFound/></>}></Route>
         <Route path='/404page' element={<><PageNotFound/></>}></Route>
         <Route path='/accountunderreview' element={<><AccountUnderReviewPage/></>}></Route>
-
-        <Route path='/viewusers' element={<><h1>View Users</h1><h1>View Users</h1></>}></Route>
-        <Route path='/viewproducts' element={<><h1>View Users</h1><h1>View Products</h1></>}></Route>
-
+        <Route path='/forgotpassword' element={<><ForgotPassword/></>}></Route>
+        <Route path='/bookingsuccessful' element={<><BookingSuccessful/></>}></Route>
 
 
-
-        <Route path='/about' element={<><h1>User Profile</h1><h1>About</h1></>}></Route>
-        <Route path='/myproducts' element={<><h1>User Profile</h1><h1>My Products</h1></>}></Route>
-        <Route path='/peddler' element={<><h1>User Profile</h1><h1>Peddler</h1></>}></Route>
-        <Route path='/userprofile' element={<><h1>User Profile</h1><h1>User Profile</h1></>}></Route>
-        <Route path='/adminprofile' element={<><h1>User Profile</h1><h1>Admin Profile</h1></>}></Route>
-        {/* <Route path='/admindashboard' element={<><h1>User Profile</h1><h1>Admin Dashboard</h1><h1>Admin Dashboard</h1></>}></Route> */}
+        <Route path='/viewusers' element={<><h1>View Users</h1><h1>View Users</h1></>}></Route>=
       
       </Routes>
+      <Footer/>
       </BrowserRouter>
     </div>
   );

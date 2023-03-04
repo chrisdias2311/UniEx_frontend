@@ -86,6 +86,9 @@ function DrawerAppBar(props) {
         // const P_id = JSON.parse(localStorage.getItem('user')).pid
         navigate('/profile/'+JSON.parse(localStorage.getItem('user'))._id)
     }
+    const navigateToForgotPassword = () => {
+        navigate('/forgotpassword')
+    }
 
     const logout = () => {
         setAnchorEl(null);
@@ -325,6 +328,7 @@ function DrawerAppBar(props) {
                                             <MenuItem onClick={navigateToSignIn}>Sign in to existing account</MenuItem>
                                             <MenuItem onClick={navigateToSignUp}>Sign up</MenuItem>
                                             <MenuItem onClick={navigateToAdminLogin}>Sign in as admin</MenuItem>
+                                            <MenuItem onClick={navigateToForgotPassword}>Forgot Password</MenuItem>
                                         </Menu>
                                     </div>
                                     :

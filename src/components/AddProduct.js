@@ -117,7 +117,9 @@ function AddProduct() {
                     setSuccess(true)
                     setTimeout(() => {
                         setSuccess(false)
-                    }, 3000);
+                        
+                    }, 2000);
+                    navigate('/dashboard')
                 })
                 .catch(err => {
                     setError(true)

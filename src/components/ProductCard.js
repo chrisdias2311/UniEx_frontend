@@ -10,11 +10,25 @@ import axios from 'axios';
 import { bookProd } from '../redux/actions/formActions';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 
 function ProductCard({ id, ownerId, name, description, category, price, image, link, date }) {
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
+  const [userValidity, setUserValidity] = useState('');
+
+ 
+
+  useEffect(()=> {
+    if(localStorage.getItem('user')){
+      setUserValidity(JSON.parse(localStorage.getItem('user')).validity)
+    }
+  },[])
+
+  
 
 
   const downloadProduct = (productId, ownerId, productName) => {
@@ -60,7 +74,7 @@ function ProductCard({ id, ownerId, name, description, category, price, image, l
           },
         })
           .then(res => {
-            alert("Product brought successfully!")    //improvement needed
+            navigate('/bookingsuccessful') //improvement needed
             dispatch(bookProd(productId))
           })
           .catch(err =>
@@ -82,11 +96,6 @@ function ProductCard({ id, ownerId, name, description, category, price, image, l
 
 
   }
-
-  // const viewProduct = (productId) => {
-  //   // console.log(productId)
-  //   navigate('/viewproduct/' + productId)
-  // }
 
   return (
     <div className="product">
@@ -113,8 +122,20 @@ function ProductCard({ id, ownerId, name, description, category, price, image, l
         </CardContent>
         <CardActions>
           {
-            link ? <Button onClick={() => downloadProduct(id, ownerId, name)} href={link} variant="contained">Download</Button> : <Button onClick={() => bookProduct(id, ownerId, name)} variant="contained">Book Now</Button>
+            userValidity === 'Yes' ?
+              <>
+                {
+                  link ? <Button onClick={() => downloadProduct(id, ownerId, name)} href={link} variant="contained">Download</Button> : <Button onClick={() => bookProduct(id, ownerId, name)} variant="contained">Book Now</Button>
+                }
+              </>
+              :
+              <></>
           }
+
+          {/* {
+            link ? <Button onClick={() => downloadProduct(id, ownerId, name)} href={link} variant="contained">Download</Button> : <Button onClick={() => bookProduct(id, ownerId, name)} variant="contained">Book Now</Button>
+          } */}
+
           <a className='link_tag' href={"http://" + image} target="_blank" rel="noreferrer">
             View Product
           </a>

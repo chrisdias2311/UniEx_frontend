@@ -286,6 +286,7 @@ function DrawerAppBar(props) {
                                 <Button onClick={navigateToSignIn} sx={{ color: '#fff', paddingLeft: 3 }}>Sign-In</Button>
                                 <Button onClick={navigateToSignUp} sx={{ color: '#fff', paddingRight: 3 }}>Sign-Up</Button>
                                 <Button onClick={navigateToAdminLogin} sx={{ color: '#fff' }}>Sign-In as Admin</Button>
+                                <Button onClick={navigateToForgotPassword} sx={{ color: '#fff' }}>Forgot Password</Button>
                             </Box>
                     }
 
@@ -325,7 +326,6 @@ function DrawerAppBar(props) {
                                             <MenuItem onClick={navigateToSignIn}>Sign in to existing account</MenuItem>
                                             <MenuItem onClick={navigateToSignUp}>Sign up</MenuItem>
                                             <MenuItem onClick={navigateToAdminLogin}>Sign in as admin</MenuItem>
-                                            <MenuItem onClick={navigateToForgotPassword}>Forgot Password</MenuItem>
                                         </Menu>
                                     </div>
                                     :

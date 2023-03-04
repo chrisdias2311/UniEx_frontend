@@ -30,11 +30,11 @@ function ForgotPassword() {
         setNewPass(event.target.value)
     }
 
-    useEffect(() => {
-        if(!localStorage.getItem('user')){
-            navigate('/404page')
-        }
-    }, []);
+    // useEffect(() => {
+    //     if(!localStorage.getItem('user')){
+    //         navigate('/404page')
+    //     }
+    // }, []);
 
     const getOtp = () => {
         if (email !== '') {

@@ -20,15 +20,15 @@ function ProductCard({ id, ownerId, name, description, category, price, image, l
 
   const [userValidity, setUserValidity] = useState('');
 
- 
 
-  useEffect(()=> {
-    if(localStorage.getItem('user')){
+
+  useEffect(() => {
+    if (localStorage.getItem('user')) {
       setUserValidity(JSON.parse(localStorage.getItem('user')).validity)
     }
-  },[])
+  }, [])
 
-  
+
 
 
   const downloadProduct = (productId, ownerId, productName) => {
@@ -51,7 +51,7 @@ function ProductCard({ id, ownerId, name, description, category, price, image, l
         .catch(err =>
           console.log("This is the error", err),
         );
-        
+
     }
   }
 
@@ -73,8 +73,8 @@ function ProductCard({ id, ownerId, name, description, category, price, image, l
           },
         })
           .then(res => {
-            if(res.status===200){
-              navigate('/bookingsuccessful') 
+            if (res.status === 200) {
+              navigate('/bookingsuccessful')
             }
             dispatch(bookProd(productId))
           })
@@ -94,48 +94,49 @@ function ProductCard({ id, ownerId, name, description, category, price, image, l
 
   return (
     <div className="product">
-      <Card sx={{ maxWidth: 345, minWidth: 345 }}>
+      <Card sx={{ maxWidth: 345, minWidth: 345, minHeight: 450 }}>
         <CardMedia
           component="img"
           height="200"
           image={image}
           alt="Image"
         />
-        <CardContent sx={{ minHeight: 345, maxHeight: 345 }}>
+        <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {name}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {description}
+            <strong>Description: </strong>{description}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            category: {category}
+            <strong>Category: </strong> {category}
           </Typography>
           <Typography component="div">
             Price: ₹{price}
           </Typography>
-        </CardContent>
-        <CardActions>
-          {
-            userValidity === 'Yes' ?
-              <>
-                {
-                  link ? <Button onClick={() => downloadProduct(id, ownerId, name)} href={link} variant="contained">Download</Button> : <Button onClick={() => bookProduct(id, ownerId, name)} variant="contained">Book Now</Button>
-                }
-              </>
-              :
-              <></>
-          }
 
-          {/* {
+          <CardActions>
+            {
+              userValidity === 'Yes' ?
+                <>
+                  {
+                    link ? <Button onClick={() => downloadProduct(id, ownerId, name)} href={link} variant="contained">Download</Button> : <Button onClick={() => bookProduct(id, ownerId, name)} variant="contained">Book Now</Button>
+                  }
+                </>
+                :
+                <></>
+            }
+
+            {/* {
             link ? <Button onClick={() => downloadProduct(id, ownerId, name)} href={link} variant="contained">Download</Button> : <Button onClick={() => bookProduct(id, ownerId, name)} variant="contained">Book Now</Button>
           } */}
 
-          <a className='link_tag' href={image} target="_blank" rel="noreferrer">
-            View Product
-          </a>
+            <a className='link_tag' href={image} target="_blank" rel="noreferrer">
+              View Product
+            </a>
 
-        </CardActions>
+          </CardActions>
+        </CardContent>
       </Card>
     </div>
   )

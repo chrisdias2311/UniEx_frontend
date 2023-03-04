@@ -144,7 +144,7 @@ function UpdateUserProfile() {
         formdata.append('department', Department);
         formdata.append('class', Div);
 
-        axios.post('http://localhost:5000/api/user/updateuser', formdata, {
+        axios.post('https://uniexserver.onrender.com/api/user/updateuser', formdata, {
             headers: {
                 'Content-Type': 'application/json',
             },

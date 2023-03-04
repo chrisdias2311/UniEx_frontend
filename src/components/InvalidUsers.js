@@ -24,7 +24,7 @@ function InvalidUsers() {
             navigate("/404page");
         } else {
             axios
-                .get("http://localhost:5000/api/user/invalidusers")
+                .get("https://uniexserver.onrender.com/api/user/invalidusers")
                 .then((response) => {
                     dispatch(setInvalidUsers(response.data));
                 })

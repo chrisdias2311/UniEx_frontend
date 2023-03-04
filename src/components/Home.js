@@ -27,7 +27,7 @@ function Home() {
 
     useEffect(() => {
         axios
-            .get("http://localhost:5000/api/products/allproducts")
+            .get("https://uniexserver.onrender.com/api/products/allproducts")
             .then((response) => {
                 // dispatch(setInvalidUsers(response.data));
                 dispatch(setProducts(response.data))
@@ -42,7 +42,7 @@ function Home() {
                     const formdata = new FormData()
                     formdata.append('userid', JSON.parse(localStorage.getItem('user'))._id);
 
-                    axios.post('http://localhost:5000/api/transactions/userdetails', formdata, {
+                    axios.post('https://uniexserver.onrender.com/api/transactions/userdetails', formdata, {
                         headers: {
                             'Content-Type': 'application/json',
                         },

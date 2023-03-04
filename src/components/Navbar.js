@@ -144,9 +144,6 @@ function DrawerAppBar(props) {
                 className="header_logo"
                 src={Logo}
             />
-            {/* <Typography variant="h6" sx={{}}>
-                MUI
-            </Typography> */}
             <Divider />
 
 
@@ -161,7 +158,6 @@ function DrawerAppBar(props) {
                                         <ListItemText onClick={navigateToAbout}>About</ListItemText>
                                         <ListItemText onClick={navigateToAddProduct}>Add Product</ListItemText>
                                         <ListItemText onClick={navigateToMyDashboard}>Dashboard</ListItemText>
-                                        <ListItemText onClick={navigateToPeddler}>Peddler</ListItemText>
 
                                     </ListItemButton>
                                 </ListItem>

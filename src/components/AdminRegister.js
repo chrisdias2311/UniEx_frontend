@@ -55,7 +55,7 @@ function AdminRegister() {
         formdata.append('lastname', formData.lastName);
         formdata.append('password', formData.password);
 
-        axios.post('http://localhost:5000/api/admin/register', formdata, {
+        axios.post('https://uniexserver.onrender.com/api/admin/register', formdata, {
             headers: {
                 'Content-Type': 'application/json',
             },

@@ -23,7 +23,7 @@ function OtpValidation() {
 
     const getOtp = () => {
         const id = JSON.parse(localStorage.getItem('user')).email
-        axios.get(`http://localhost:5000/api/user/generateotp/${id}`, {
+        axios.get(`https://uniexserver.onrender.com/api/user/generateotp/${id}`, {
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -38,7 +38,7 @@ function OtpValidation() {
     const submitOtp = () => {
         const id = JSON.parse(localStorage.getItem('user')).email
         
-        axios.get(`http://localhost:5000/api/user/verifyotp/${id}/${otp}`, {
+        axios.get(`https://uniexserver.onrender.com/api/user/verifyotp/${id}/${otp}`, {
             headers: {
                 'Content-Type': 'application/json',
             },

@@ -21,7 +21,7 @@ function ViewProduct() {
     const formdata = new FormData();
     formdata.append('productid', params.id);
 
-    axios.post('http://localhost:5000/api/products/productdetails', formdata, {
+    axios.post('https://uniexserver.onrender.com/api/products/productdetails', formdata, {
       headers: {
         'Content-Type': 'application/json',
       },

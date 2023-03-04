@@ -94,7 +94,7 @@ function AddProduct() {
             formdata.append('link', formData.link);
             formdata.append('file', formData.image);
 
-            axios.post('http://localhost:5000/api/products/addproduct', formdata, {
+            axios.post('https://uniexserver.onrender.com/api/products/addproduct', formdata, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },

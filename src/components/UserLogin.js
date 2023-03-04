@@ -50,13 +50,14 @@ function UserLogin() {
             formdata.append('password', formData.password);
 
 
-            axios.post('http://localhost:5000/api/user/login', formdata, {
+            axios.post('https://uniexserver.onrender.com/api/user/login', formdata, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
             })
                 .then(res => {
                     setLoader(false);
+                    console.log(res)
 
                     if (res.data.email) {
                         setSuccess(true)

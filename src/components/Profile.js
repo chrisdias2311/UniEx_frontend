@@ -47,7 +47,7 @@ function Profile() {
             const formdata = new FormData()
             formdata.append('userid', JSON.parse(localStorage.getItem('user'))._id);
 
-            axios.post('http://localhost:5000/api/transactions/userdetails', formdata, {
+            axios.post('https://uniexserver.onrender.com/api/transactions/userdetails', formdata, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -74,7 +74,7 @@ function Profile() {
         const formdata = new FormData()
         formdata.append('id', JSON.parse(localStorage.getItem('user'))._id);
 
-        axios.post('http://localhost:5000/api/user/deleteuser', formdata, {
+        axios.post('https://uniexserver.onrender.com/api/user/deleteuser', formdata, {
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -92,7 +92,7 @@ function Profile() {
     const submitOtp = () => {
         const id = JSON.parse(localStorage.getItem('user')).email
 
-        axios.get(`http://localhost:5000/api/user/verifyotp/${id}/${otp}`, {
+        axios.get(`https://uniexserver.onrender.com/api/user/verifyotp/${id}/${otp}`, {
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -108,7 +108,7 @@ function Profile() {
     const getOtp = () => {
         setDeleteUser(false);
         const id = JSON.parse(localStorage.getItem('user')).email
-        axios.get(`http://localhost:5000/api/user/generateotp/${id}`, {
+        axios.get(`https://uniexserver.onrender.com/api/user/generateotp/${id}`, {
             headers: {
                 'Content-Type': 'application/json',
             },

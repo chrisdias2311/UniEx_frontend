@@ -39,7 +39,7 @@ function ForgotPassword() {
     const getOtp = () => {
         if (email !== '') {
             const id = email
-            axios.get(`http://localhost:5000/api/user/generateotp_pass/${id}`, {
+            axios.get(`https://uniexserver.onrender.com/api/user/generateotp_pass/${id}`, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -56,7 +56,7 @@ function ForgotPassword() {
     const submitOtp = () => {
         const id = email
 
-        axios.get(`http://localhost:5000/api/user/verifyotp_pass/${id}/${otp}`, {
+        axios.get(`https://uniexserver.onrender.com/api/user/verifyotp_pass/${id}/${otp}`, {
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -74,7 +74,7 @@ function ForgotPassword() {
 
     const changePassword = () => {
 
-        axios.get(`http://localhost:5000/api/user/change_pass/${email}/${newPass}`, {
+        axios.get(`https://uniexserver.onrender.com/api/user/change_pass/${email}/${newPass}`, {
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -82,7 +82,7 @@ function ForgotPassword() {
             .then(res => {
                 console.log(res)
                 if (res.status === 200) {
-                    alert('Password changes successfully!')
+                    alert('Password changed successfully!')
                     navigate('/')
 
                 }

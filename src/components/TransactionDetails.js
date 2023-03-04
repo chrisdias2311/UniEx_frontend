@@ -31,7 +31,7 @@ function TransactionDetails() {
         const formdata = new FormData();
         formdata.append('tid', params.id);
 
-        axios.post('http://localhost:5000/api/transactions/trasactiondetails', formdata, {
+        axios.post('https://uniexserver.onrender.com/api/transactions/trasactiondetails', formdata, {
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -41,7 +41,7 @@ function TransactionDetails() {
                     formdata.append('userid', res.data.soldBy);
                     formdata.append('productid', res.data.productId);
 
-                    axios.post('http://localhost:5000/api/transactions/userdetails', formdata, {
+                    axios.post('https://uniexserver.onrender.com/api/transactions/userdetails', formdata, {
                         headers: {
                             'Content-Type': 'application/json',
                         },
@@ -58,7 +58,7 @@ function TransactionDetails() {
 
 
 
-                    axios.post('http://localhost:5000/api/products/productdetails', formdata, {
+                    axios.post('https://uniexserver.onrender.com/api/products/productdetails', formdata, {
                         headers: {
                             'Content-Type': 'application/json',
                         },

@@ -21,7 +21,7 @@ function InvalidUserCard({ id, pid, email, firstname, lastname, phone, year, dep
     const dispatch = useDispatch();
 
     const register = (userId) => {
-        axios.put(`http://localhost:5000/api/user/validateuser/${userId}`, {
+        axios.put(`https://uniexserver.onrender.com/api/user/validateuser/${userId}`, {
             validity: 'Yes'
         })
             .then(res => {
@@ -32,7 +32,7 @@ function InvalidUserCard({ id, pid, email, firstname, lastname, phone, year, dep
     }
 
     const decline = (userId) => {
-        axios.put(`http://localhost:5000/api/user/declineuser/${userId}`, {
+        axios.put(`https://uniexserver.onrender.com/api/user/declineuser/${userId}`, {
             validity: 'Decline'
         })
             .then(res => {
@@ -49,7 +49,7 @@ function InvalidUserCard({ id, pid, email, firstname, lastname, phone, year, dep
             <Card sx={{ maxWidth: 300, minWidth: 300 }}>
                 <CardMedia
                     sx={{ height: 200 }}
-                    image={"http://" + idimage}
+                    image={idimage}
                     title={firstname + " " + lastname}
                 />
                 <CardContent>
@@ -80,7 +80,7 @@ function InvalidUserCard({ id, pid, email, firstname, lastname, phone, year, dep
                 <CardActions>
                     <Button className='controlButton' sx={{ margin: 1 }} variant="contained" onClick={() => register(id)}>Register</Button>
                     <Button className='controlButtons' sx={{ margin: 1 }} variant="contained" color='error' onClick={() => decline(id)}>Decline</Button>
-                    <a className='link_tag' href={"http://" + idimage} target="_blank" rel="noreferrer"> View </a>
+                    <a className='link_tag' href={idimage} target="_blank" rel="noreferrer"> View </a>
                 </CardActions>
             </Card>
 

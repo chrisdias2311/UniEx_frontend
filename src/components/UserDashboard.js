@@ -38,7 +38,7 @@ function UserDashboard() {
       const formdata = new FormData();
       formdata.append('ownerId', JSON.parse(localStorage.getItem('user'))._id);
 
-      axios.post('http://localhost:5000/api/products/myproducts', formdata, {
+      axios.post('https://uniexserver.onrender.com/api/products/myproducts', formdata, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -72,7 +72,7 @@ function UserDashboard() {
     const formdata = new FormData();
     formdata.append('id', JSON.parse(localStorage.getItem('user'))._id);
 
-    axios.post('http://localhost:5000/api/transactions/soldproducts', formdata, {
+    axios.post('https://uniexserver.onrender.com/api/transactions/soldproducts', formdata, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -95,7 +95,7 @@ function UserDashboard() {
     const formdata = new FormData();
     formdata.append('id', JSON.parse(localStorage.getItem('user'))._id);
 
-    axios.post('http://localhost:5000/api/transactions/mytransactions', formdata, {
+    axios.post('https://uniexserver.onrender.com/api/transactions/mytransactions', formdata, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -193,7 +193,7 @@ function UserDashboard() {
       }
 
 
-      <br></br> <br></br> <br></br>
+      <br></br> <br></br> <br></br><br></br><br></br>
     </div>
   )
 }

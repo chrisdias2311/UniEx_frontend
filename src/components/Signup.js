@@ -189,7 +189,7 @@ function Signup() {
             formdata.append('password', formData.password);
             formdata.append('file', formData.image);
 
-            axios.post('http://localhost:5000/api/user/register', formdata, {
+            axios.post('https://uniexserver.onrender.com/api/user/register', formdata, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
@@ -202,7 +202,7 @@ function Signup() {
                     const verifyemail = JSON.parse(localStorage.getItem('user')).email
                     formdata.append('verifyEmail', verifyemail);
 
-                    axios.post('http://localhost:5000/api/user/getuser', formdata, {
+                    axios.post('https://uniexserver.onrender.com/api/user/getuser', formdata, {
                         headers: {
                             'Content-Type': 'application/json',
                         },

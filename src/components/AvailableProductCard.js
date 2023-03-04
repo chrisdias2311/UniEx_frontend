@@ -26,7 +26,7 @@ function AvailableProductCard({ id, ownerId, name, description, category, price,
     const formdata = new FormData();
         formdata.append('id', id);
 
-        axios.post('http://localhost:5000/api/products/deleteproduct', formdata, {
+        axios.post('https://uniexserver.onrender.com/api/products/deleteproduct', formdata, {
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -46,7 +46,7 @@ function AvailableProductCard({ id, ownerId, name, description, category, price,
         <CardMedia
           component="img"
           height="200"
-          image={"http://" + image}
+          image={image}
           alt="Image"
         />
         <CardContent>

@@ -18,6 +18,8 @@ function ProductCard({ id, ownerId, name, description, category, price, image, l
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [notification, setNotification] = useState(false);
+
   const [userValidity, setUserValidity] = useState('');
 
 
@@ -92,12 +94,20 @@ function ProductCard({ id, ownerId, name, description, category, price, image, l
 
   }
 
+  const askNotification = () => {
+    setNotification(true)
+  }
+  const closeNotification = () => {
+    setNotification(false);
+  }
+
   return (
     <div className="product">
-      <Card sx={{ maxWidth: 345, minWidth: 345, minHeight: 450 }}>
+      <Card sx={{ maxWidth: 345, minWidth: 345 }}>
         <CardMedia
           component="img"
           height="200"
+          sx={{ marginTop: 0 }}
           image={image}
           alt="Image"
         />
@@ -120,22 +130,33 @@ function ProductCard({ id, ownerId, name, description, category, price, image, l
               userValidity === 'Yes' ?
                 <>
                   {
-                    link ? <Button onClick={() => downloadProduct(id, ownerId, name)} href={link} variant="contained">Download</Button> : <Button onClick={() => bookProduct(id, ownerId, name)} variant="contained">Book Now</Button>
+                    link ? <Button onClick={() => downloadProduct(id, ownerId, name)} href={link} variant="contained">Download</Button> : <Button onClick={askNotification} variant="contained">Book Now</Button>
                   }
                 </>
                 :
                 <></>
             }
 
-            {/* {
-            link ? <Button onClick={() => downloadProduct(id, ownerId, name)} href={link} variant="contained">Download</Button> : <Button onClick={() => bookProduct(id, ownerId, name)} variant="contained">Book Now</Button>
-          } */}
 
             <a className='link_tag' href={image} target="_blank" rel="noreferrer">
-              View Product
+              View Image
             </a>
-
           </CardActions>
+
+          {
+            notification ?
+              <div>
+                <Typography component="div">
+                  Are you sure you want to book this product?
+                </Typography>
+                <div>
+                  <Button sx={{ margin: 1 }} onClick={closeNotification} variant="contained">No</Button>
+                  <Button sx={{ margin: 1 }} onClick={() => bookProduct(id, ownerId, name)} variant="contained">Yes</Button>
+                </div>
+              </div>
+              :
+              <></>
+          }
         </CardContent>
       </Card>
     </div>

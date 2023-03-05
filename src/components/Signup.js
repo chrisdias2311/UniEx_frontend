@@ -172,7 +172,7 @@ function Signup() {
 
 
     const submitSignupForm = (e) => {
-        if (formData.pid !== '' && formData.email !== '' && formData.firstName !== '' && formData.lastName !== '' && formData.phone !== '' && formData.year !== '' && formData.dept !== '' && formData.class !== '' && formData.password !== '' && formData.image !== '') {
+        if (formData.pid !== '' && formData.email !== '' && formData.firstName !== '' && formData.lastName !== '' && formData.phone !== '' && formData.year !== '' && formData.dept !== '' && formData.class !== '' && formData.password !== '' && formData.image !== '' && (formData.image.type==='image/jpeg' || formData.image.type==='image/png')) {
             setLoader(true)
 
             e.preventDefault();
@@ -329,7 +329,7 @@ function Signup() {
                             <TextField fullWidth type="password" className='inputField' id="outlined-basic" value={formData.password} onChange={handlePasswordChange} label="Password*" variant="outlined" />
                         </div>
 
-                        <h5>Upload SFIT Identity card*</h5>
+                        <h5>Upload SFIT Identity card* (Only jpeg/png) format</h5>
                         <Button variant="contained" value={formData.image} component="label" onChange={handleIdImageChange}>
                             Upload
                             <input hidden type="file" />

@@ -73,13 +73,15 @@ function AddProduct() {
 
     const handleImageChange = (event) => {
         setFormData({ ...formData, image: event.target.files[0] });
+        console.log('Type...', formData.image)
         imageData.append('file', formData.image);
         setImageUpload(true);
     }
 
     const addProduct = (e) => {
 
-        if (formData.name !== '' && formData.description !== '' && formData.category !== '' && formData.price !== '' && formData.image !== '') {
+        if (formData.name !== '' && formData.description !== '' && formData.category !== '' && formData.price !== '' && formData.image !== '' && (formData.image.type==='image/jpeg' || formData.image.type==='image/png')) {
+            console.log('Type...', formData.image.type)
 
             setLoader(true)
 
@@ -190,7 +192,7 @@ function AddProduct() {
                         </div>
 
 
-                        <h5>Upload Product Image</h5>
+                        <h5>Upload Product Image (Only jpeg & png)</h5>
 
                         {
                             (formData.image) ? <><Alert severity="success">{formData.image.name}</Alert> <br></br></> : <></>

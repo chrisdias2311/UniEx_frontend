@@ -64,7 +64,7 @@ function OtpValidation() {
                         <Button onClick={getOtp} sx={{ ':hover': { bgcolor: 'grey', color: 'white' }, bgcolor: 'black' }} variant="contained" >
                             Get OTP
                         </Button>
-                        <br></br> <br></br> <br></br>
+                        <br></br> <br></br> <br></br><br></br><br></br>
                     </div> :
                     <div className='otp_form'>
                         <br></br>
@@ -80,6 +80,8 @@ function OtpValidation() {
                         <Button onClick={submitOtp} sx={{ ':hover': { bgcolor: 'grey', color: 'white' }, bgcolor: 'black' }} variant="contained" >
                             Verify OTP
                         </Button>
+
+                        <br></br><br></br>
                         
                     </div>
             }

@@ -23,6 +23,7 @@ import { Button, CardActionArea, CardActions } from '@mui/material';
 
 function Profile() {
     const params = useParams();
+    const [id, setId] = useState('');
     const [pid, setPid] = useState('')
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -31,10 +32,11 @@ function Profile() {
     const [phone, setPhone] = useState('');
     const [otpPending, setOtpPending] = useState(false);
     const [otp, setOtp] = useState('');
+    const [verified, setVerified] = useState('')
 
     const [deleteUser, setDeleteUser] = useState(false);
 
-    const navigate = useNavigate
+    const navigate = useNavigate()
 
     const handleOtpChange = (event) => {
         setOtp(event.target.value)
@@ -53,12 +55,14 @@ function Profile() {
                 },
             })
                 .then(res => {
+                    setId(res.data._id)
                     setName(res.data.firstname + ' ' + res.data.lastname)
                     setEmail(res.data.email)
                     setUserClass(res.data.year + "  " + res.data.dept + "  " + res.data.class)
                     setPhone(res.data.phone)
                     setPid(res.data.pid);
                     setValidity(res.data.validity)
+                    setVerified(res.data.verified)
                 })
                 .catch(err =>
                     console.log("This is the error", err),
@@ -68,6 +72,10 @@ function Profile() {
 
     const deleteFunc = () => {
         setDeleteUser(true);
+    }
+
+    const navigateToOTP = () => {
+        navigate('/validateotp/' + id)
     }
 
     const deleteUserFunc = () => {
@@ -98,7 +106,7 @@ function Profile() {
             },
         })
             .then(res => {
-                if(res.data.modifiedCount===1){
+                if (res.data.modifiedCount === 1) {
                     deleteUserFunc();
                 }
             })
@@ -119,7 +127,7 @@ function Profile() {
             .catch(err => console.log(err));
     }
 
-    
+
     const cancelDelete = () => {
         setDeleteUser(false);
     }
@@ -167,6 +175,19 @@ function Profile() {
                                     <></>
                             }
 
+                            {
+                                (verified !== 'yes' || verified !== 'Yes') ?
+                                    <>
+                                        <Typography sx={{ color: 'red' }} variant="body3" color="text.secondary">
+                                            Complete your signup by verifying your email address
+                                        </Typography>
+                                        <Button sx={{ color: 'red' }} onClick={navigateToOTP} >
+                                            Verify email
+                                        </Button>
+                                    </>
+                                    :
+                                    <></>
+                            }
 
                         </CardContent>
                     </CardActionArea>
@@ -219,6 +240,9 @@ function Profile() {
                         <></>
                 }
             </div>
+
+
+
         </div>
     )
 }

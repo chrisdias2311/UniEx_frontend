@@ -11,6 +11,8 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import LinearProgress from '@mui/material/LinearProgress';
+
 
 
 
@@ -24,6 +26,9 @@ function BookedProductDetails() {
     const [buyerEmail, setBuyerEmail] = React.useState('');
     const [buyerClass, setBuyerClass] = React.useState('');
     const [buyerPhone, setBuyerPhone] = React.useState('');
+
+    const [loader, setLoader] = useState(true);
+    const [upperLoader, setUpperLoader] = useState(true)
 
     const [productName, setProductName] = useState('');
     const [productDescription, setProductDescription] = useState('');
@@ -52,6 +57,7 @@ function BookedProductDetails() {
                         },
                     })
                         .then(res => {
+                            setUpperLoader(false)
                             setBuyerName(res.data.firstname + ' ' + res.data.lastname)
                             setBuyerEmail(res.data.email)
                             setBuyerClass(res.data.year + "  " + res.data.dept + "  " + res.data.class)
@@ -69,6 +75,7 @@ function BookedProductDetails() {
                         },
                     })
                         .then(res => {
+                            setLoader(false)
                             setProductName(res.data.name)
                             setProductDescription(res.data.description)
                             setProductCategory(res.data.category)
@@ -93,6 +100,13 @@ function BookedProductDetails() {
             <h1>Transaction Details</h1>
 
             <Card sx={{ maxWidth: 500 }}>
+                {
+                    upperLoader ?
+                        <LinearProgress />
+                        :
+                        <></>
+                }
+
                 <CardContent sx={{ backgroundColor: 'white' }}>
 
                     <Typography variant="h5" component="div">
@@ -122,6 +136,13 @@ function BookedProductDetails() {
 
 
             <Card sx={{ maxWidth: 500 }}>
+                {
+                    loader ?
+                        <LinearProgress />
+                        :
+                        <></>
+                }
+
                 <CardContent sx={{ backgroundColor: 'white' }}>
 
                     <Typography variant="h5" component="div">

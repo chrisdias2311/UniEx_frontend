@@ -13,7 +13,7 @@ import axios from 'axios';
 // import Typography from '@mui/material/Typography';
 
 import TextField from '@mui/material/TextField';
-
+import LinearProgress from '@mui/material/LinearProgress';
 
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -35,6 +35,7 @@ function Profile() {
     const [verified, setVerified] = useState('')
 
     const [deleteUser, setDeleteUser] = useState(false);
+    const [loader, setLoader] = useState(true)
 
     const navigate = useNavigate()
 
@@ -55,6 +56,7 @@ function Profile() {
                 },
             })
                 .then(res => {
+                    setLoader(false)
                     setId(res.data._id)
                     setName(res.data.firstname + ' ' + res.data.lastname)
                     setEmail(res.data.email)
@@ -141,7 +143,15 @@ function Profile() {
 
                 <Card sx={{ maxWidth: 345 }}>
                     <CardActionArea>
+                        {
+                            loader?
+                            <LinearProgress/>
+                            :
+                            <></>
+                        }
+                    
                         <CardContent>
+                            
                             <Typography gutterBottom variant="h5" component="div">
                                 Details
                             </Typography>

@@ -11,10 +11,14 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import LinearProgress from '@mui/material/LinearProgress';
 
 function TransactionDetails() {
     const params = useParams();
     const navigate = useNavigate();
+
+    const [loader, setLoader] = useState(true);
+    const [upperloader, setUpperLoader] = useState(true);
 
     const [sellerName,  setSellerName] = React.useState('');
     const [sellerEmail, setSellerEmail] = React.useState('');
@@ -47,6 +51,7 @@ function TransactionDetails() {
                         },
                     })
                         .then(res => {
+                            setUpperLoader(false)
                             setSellerName(res.data.firstname + ' ' + res.data.lastname)
                             setSellerEmail(res.data.email)
                             setSellerClass(res.data.year + "  " + res.data.dept + "  " + res.data.class)
@@ -64,6 +69,7 @@ function TransactionDetails() {
                         },
                     })
                         .then(res => {
+                            setLoader(false)
                             setProductName(res.data.name)
                             setProductDescription(res.data.description)
                             setProductCategory(res.data.category)
@@ -89,6 +95,13 @@ function TransactionDetails() {
       <h1>Transaction Details</h1>
 
       <Card sx={{ maxWidth: 500 }}>
+        {
+            upperloader?
+            <LinearProgress/>
+            :
+            <></>
+        }
+        
                 <CardContent sx={{ backgroundColor: 'white' }}>
 
                     <Typography variant="h5" component="div">
@@ -118,6 +131,13 @@ function TransactionDetails() {
 
 
             <Card sx={{ maxWidth: 500 }}>
+                {
+                    loader?
+                    <LinearProgress/>
+                    :
+                    <></>
+                }
+                
                 <CardContent sx={{ backgroundColor: 'white' }}>
 
                     <Typography variant="h5" component="div">

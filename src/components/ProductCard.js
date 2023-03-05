@@ -144,6 +144,13 @@ function ProductCard({ id, ownerId, name, description, category, price, image, l
           </CardActions>
 
           {
+            userValidity !== 'Yes' ?
+            <div style={{color:'red'}}>Sign-in to Book / Download products</div>
+            :
+            <></>
+          }
+
+          {
             notification ?
               <div>
                 <Typography component="div">

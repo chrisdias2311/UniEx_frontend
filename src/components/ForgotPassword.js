@@ -109,7 +109,7 @@ function ForgotPassword() {
                             {
                                 changePass ?
                                     <>
-                                        <TextField onChange={handleNewPassChange} className='inputField' fullWidth id="outlined-basic" label="Enter New Password" variant="outlined" />
+                                        <TextField onChange={handleNewPassChange} type="password" className='inputField' fullWidth id="outlined-basic" label="Enter New Password" variant="outlined" />
                                         <br></br>
                                         <br></br>
 

@@ -251,7 +251,7 @@ function Signup() {
                         </div>
 
                         <div className='inputField'>
-                            <TextField className='inputField' fullWidth id="outlined-basic" value={formData.email} onChange={handleEmailChange} label="Email*" variant="outlined" />
+                            <TextField className='inputField' fullWidth id="outlined-basic" value={formData.email} onChange={handleEmailChange} label="SFIT Email*" variant="outlined" />
                         </div>
 
                         <div className='inputField'>

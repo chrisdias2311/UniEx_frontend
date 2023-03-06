@@ -218,7 +218,7 @@ function AddProduct() {
 
                     {
                         success ? <Alert severity="success">Product added Successfully!</Alert> : (
-                            error ? <Alert severity="error">Make sure you've entered all the details correctly</Alert> : <></>
+                            error ? <Alert severity="error">Make sure you've entered all the details correctly and product imagetype is jpeg/png</Alert> : <></>
                         )
                     }
 

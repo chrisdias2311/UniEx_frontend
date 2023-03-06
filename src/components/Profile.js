@@ -186,7 +186,7 @@ function Profile() {
                             }
 
                             {
-                                (verified !== 'yes' || verified !== 'Yes') ?
+                                (verified !== 'yes' ) ?
                                     <>
                                         <Typography sx={{ color: 'red' }} variant="body3" color="text.secondary">
                                             Complete your signup by verifying your email address

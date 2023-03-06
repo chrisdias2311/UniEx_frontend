@@ -353,7 +353,7 @@ function Signup() {
 
                     {
                         success ? <Alert severity="success">Logged in Successfully!</Alert> : (
-                            error ? <Alert severity="error">Make sure you've entered the correct details, or maybe account already exists</Alert> : <></>
+                            error ? <Alert severity="error">Make sure you've entered the correct details & ID card format is jpeg/png, or maybe account already exists</Alert> : <></>
                         )
                     }
 

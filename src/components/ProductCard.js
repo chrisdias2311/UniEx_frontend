@@ -22,6 +22,10 @@ function ProductCard({ id, ownerId, name, description, category, price, image, l
 
   const [userValidity, setUserValidity] = useState('');
 
+  const navigateToSignUp = () => {
+    navigate('/userlogin')
+}
+
 
 
   useEffect(() => {
@@ -145,7 +149,7 @@ function ProductCard({ id, ownerId, name, description, category, price, image, l
 
           {
             userValidity !== 'Yes' ?
-            <div style={{color:'red'}}>Sign-in to Book / Download products</div>
+            <div className='anchor' onClick={navigateToSignUp} style={{color:'red'}}>Sign-in to Book / Download products</div>
             :
             <></>
           }

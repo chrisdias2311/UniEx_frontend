@@ -50,7 +50,7 @@ function DrawerAppBar(props) {
         }
     }, [])
 
-   
+
 
     //Navigations
     const navigateToHome = () => {
@@ -78,14 +78,14 @@ function DrawerAppBar(props) {
     const navigateToUserProfile = () => {
         setAnchorEl(null);
         // const P_id = JSON.parse(localStorage.getItem('user')).pid
-        navigate('/profile/'+JSON.parse(localStorage.getItem('user'))._id)
+        navigate('/profile/' + JSON.parse(localStorage.getItem('user'))._id)
     }
     const navigateToForgotPassword = () => {
         navigate('/forgotpassword')
     }
-    const updateProfile = () =>{
+    const updateProfile = () => {
         navigate('/updateuserprofile')
-    } 
+    }
 
 
 
@@ -120,7 +120,7 @@ function DrawerAppBar(props) {
     const navigateToViewProducts = () => {
         navigate('/viewproducts')
     }
-    
+
 
 
 

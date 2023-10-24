@@ -143,6 +143,8 @@ function Home() {
                     </div>
                 </div>
 
+                <h2>Chris</h2>
+
                 <div className='buttonsPanel'>
                     <ColorButton onClick={allproducts} sx={{ maxWidth: 300, minWidth: 300, margin: 2, height: 45 }} variant="contained">All Products</ColorButton>
                     <ColorButton onClick={stationery} sx={{ maxWidth: 300, minWidth: 300, margin: 2, height: 45 }} variant="contained">Stationery & Equipments</ColorButton>
